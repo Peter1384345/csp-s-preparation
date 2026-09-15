@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="zh-CN" data-page-node-id="Xl3CpZfNUGXqTpN8Huzb5r">
+<head data-page-node-id="mewUD1eKEefWzZlZ0GbI1M">
+<meta charset="utf-8" data-page-node-id="hF3abog7TT9CTv4HpHARd5">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="78fQYqboRyz2iFPuSRmXtf">
+<title>CSP-S 备考 · 在线刷题 · CSPSpass</title>
+<meta name="description" content="2021–2025 CSP-S 第一轮近 5 年真题 PDF 汇总与高频考点分级清单：选择题频次统计、阅读程序六大代码模式、完善程序五大算法家族、考前冲刺计划。" data-page-node-id="r1cVZseca0Yx2T6sErwKjH">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' data-page-node-id="lp5PMGcHTnEBqKQCD6p7sm"><rect width='24' height='24' rx='6' fill='%235B3DF5' data-page-node-id="Hj1kAqKBjZijk54wXT39vB"/><text x='12' y='17' font-size='13' font-weight='800' text-anchor='middle' fill='white' font-family='Arial' data-page-node-id="cwn769qgTc9bHrICiqDmzl">S</text></svg>" type="image/svg+xml">
+<style>
+/* ============ 设计令牌（仿 csppass.com：靛紫主色 + 珊瑚橙强调，中性色带紫味） ============ */
+:root {
+  --bg: #F7F6FB;
+  --surface: #FFFFFF;
+  --ink: #1C1830;
+  --muted: #6B6483;
+  --line: #E4E1EE;
+  --line2: #F0EEF6;
+  --brand: #5B3DF5;
+  --brand-2: #8A5CF6;
+  --brand-soft: #EFEBFE;
+  --accent: #FF6B3D;
+  --accent-soft: #FFEFE9;
+  --ok: #0E9F6E;
+  --ok-soft: #E3F7EF;
+  --gold: #B07800;
+  --gold-soft: #FBF3DC;
+  --bad: #E02424;
+  --bad-soft: #FDECEC;
+  --code-bg: #F4F2FA;
+  --radius: 10px;
+  --shadow-sm: 0 1px 2px rgba(28,24,48,.06);
+  --shadow-md: 0 8px 24px -14px rgba(46,30,110,.45);
+  --shadow-lg: 0 18px 40px -20px rgba(46,30,110,.55);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131024; --surface: #1C1833; --ink: #EAE6F7; --muted: #9C93B8;
+    --line: #2E2850; --line2: #241F42;
+    --brand: #A78BFA; --brand-2: #C4B0FD; --brand-soft: #241D46;
+    --accent: #FF8A63; --accent-soft: #38211A;
+    --ok: #3DDC97; --ok-soft: #102E23;
+    --gold: #E3C56A; --gold-soft: #33290F;
+    --bad: #FF7A7A; --bad-soft: #331A1D;
+    --code-bg: #171331;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+    --shadow-md: 0 8px 24px -14px rgba(0,0,0,.7);
+    --shadow-lg: 0 18px 40px -20px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131024; --surface: #1C1833; --ink: #EAE6F7; --muted: #9C93B8;
+  --line: #2E2850; --line2: #241F42;
+  --brand: #A78BFA; --brand-2: #C4B0FD; --brand-soft: #241D46;
+  --accent: #FF8A63; --accent-soft: #38211A;
+  --ok: #3DDC97; --ok-soft: #102E23;
+  --gold: #E3C56A; --gold-soft: #33290F;
+  --bad: #FF7A7A; --bad-soft: #331A1D;
+  --code-bg: #171331;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+  --shadow-md: 0 8px 24px -14px rgba(0,0,0,.7);
+  --shadow-lg: 0 18px 40px -20px rgba(0,0,0,.8);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.7 system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+a { color: inherit; }
+main { max-width: 940px; margin: 0 auto; padding: 24px 16px 64px; }
+section { scroll-margin-top: 70px; }
+
+/* ============ 顶栏 ============ */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  padding: 12px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.brand { font-size: 22px; font-weight: 800; text-decoration: none; letter-spacing: -0.5px; }
+.brand span {
+  background: var(--brand); color: #fff;
+  border-radius: 8px; padding: 0 8px; margin-left: 2px;
+}
+.topbar nav { display: flex; gap: 18px; flex-wrap: wrap; }
+.topbar nav a {
+  text-decoration: none; font-weight: 600; font-size: 14.5px;
+  color: var(--muted); padding: 4px 0; border-bottom: 2px solid transparent;
+}
+.topbar nav a:hover { color: var(--ink); }
+.topbar nav a.on { color: var(--brand); border-bottom-color: var(--brand); }
+
+.themebtn {
+  display: grid; place-items: center;
+  width: 34px; height: 34px; padding: 0;
+  border: 1px solid var(--line); border-radius: 9px;
+  background: var(--surface); color: var(--muted); cursor: pointer;
+}
+.themebtn:hover { color: var(--brand); border-color: var(--brand); }
+.themebtn svg { width: 17px; height: 17px; display: block; }
+.themebtn .ic-sun, .themebtn .ic-moon { grid-area: 1/1; }
+.topbar > .themebtn { margin-left: auto; }
+
+/* ============ 通用件 ============ */
+.btn {
+  display: inline-block; padding: 8px 16px;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: var(--surface); color: var(--ink);
+  font: inherit; font-weight: 600; text-decoration: none; cursor: pointer;
+}
+.btn:hover { border-color: var(--brand); color: var(--brand); }
+.btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+.btn.primary:hover { filter: brightness(1.07); color: #fff; }
+.btn.lg { padding: 11px 22px; font-size: 16px; }
+
+.card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 18px;
+}
+.card h2 { font-size: 16px; margin: 0 0 12px; }
+.card h2 .sub { font-size: 13px; font-weight: 500; color: var(--muted); margin-left: 8px; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
+@media (max-width: 700px) { .cards { grid-template-columns: 1fr; } }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: inline-block; padding: 6px 12px;
+  border: 1px solid var(--line); border-radius: 999px;
+  text-decoration: none; font-size: 14px;
+}
+.chip:hover { border-color: var(--brand); color: var(--brand); }
+.chip b { color: var(--brand); font-variant-numeric: tabular-nums; }
+.chips.big .chip { padding: 12px 20px; font-size: 16px; }
+
+.tag {
+  display: inline-block; font-size: 12px; padding: 1px 8px;
+  border-radius: 999px; background: var(--line2); color: var(--muted); white-space: nowrap;
+}
+.tag.t0 { background: var(--bad-soft); color: var(--bad); }
+.tag.t1 { background: var(--gold-soft); color: var(--gold); }
+.tag.t2 { background: var(--ok-soft); color: var(--ok); }
+.tag.judge { background: var(--brand-soft); color: var(--brand); }
+.tag.accent { background: var(--accent-soft); color: var(--accent); }
+
+.muted { color: var(--muted); }
+
+/* ============ 资源导航卡片 ============ */
+.sitegrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin: 14px 0 4px; }
+.site-card {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 16px; border: 1px solid var(--line); border-radius: 12px;
+  background: var(--bg); text-decoration: none; color: inherit;
+  transition: border-color .15s, transform .15s;
+}
+.site-card:hover { border-color: var(--brand); transform: translateY(-2px); }
+.site-card .sc-head { display: flex; align-items: center; gap: 8px; }
+.site-card .sc-name { font-weight: 700; font-size: 15px; color: var(--ink); }
+.site-card .sc-url { font-size: 12px; color: var(--brand); font-family: ui-monospace, Consolas, monospace; }
+.site-card p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.site-more { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+code {
+  background: var(--code-bg); padding: 1px 6px; border-radius: 6px;
+  font-family: ui-monospace, Consolas, "Courier New", monospace; font-size: .9em;
+}
+
+/* ============ Hero ============ */
+.hero { padding: 24px 0 8px; display: grid; grid-template-columns: 1.25fr 1fr; gap: 32px; align-items: center; }
+@media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .hero-visual { display: none; } }
+.hero h1 { font-size: 32px; margin: 0 0 12px; letter-spacing: -0.5px; }
+.hero .hero-em { color: var(--accent); }
+.hero p { color: var(--muted); max-width: 62ch; margin: 0; }
+.cta { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 32px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.hero-stats span { color: var(--muted); font-size: 14px; }
+.hero-stats b { display: block; font-size: 26px; color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: -.5px; }
+.hero-stats b small { font-size: 14px; font-weight: 600; color: var(--muted); }
+
+.hero-visual { position: relative; height: 300px; perspective: 1200px; }
+.hero-card {
+  position: absolute; inset: 0; border-radius: 14px;
+  background: var(--surface); border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg); transform-style: preserve-3d;
+}
+.hero-card-back { transform: rotateY(-14deg) rotateX(4deg) translateZ(-70px) translate(26px,26px); opacity: .45; }
+.hero-card-mid  { transform: rotateY(-14deg) rotateX(4deg) translateZ(-35px) translate(13px,13px); opacity: .7; }
+.hero-card-front {
+  display: grid; align-content: start; gap: 10px; padding: 22px 24px;
+  transform: rotateY(-14deg) rotateX(4deg);
+  transition: transform .5s cubic-bezier(.22,.61,.36,1);
+}
+.hero-visual:hover .hero-card-front { transform: rotateY(-4deg) rotateX(1deg) scale(1.02); }
+.hc-meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+.hc-tag { font-style: normal; font-size: 11px; padding: 1px 7px; border-radius: 999px; background: var(--brand-soft); color: var(--brand); }
+.hc-stem { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.7; }
+.hc-opt { padding: 8px 12px; font-size: 13.5px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); }
+.hc-opt-on {
+  display: flex; align-items: center; justify-content: space-between;
+  border-color: var(--ok); background: var(--ok-soft); color: var(--ok); font-weight: 600;
+}
+.hc-ok { font-style: normal; }
+
+/* ============ 频次条形图 ============ */
+.freq .row { display: grid; grid-template-columns: 190px 1fr 120px; gap: 12px; align-items: center; padding: 6px 0; }
+.freq .row .name { font-size: 14px; font-weight: 600; }
+.freq .bar-bg { background: var(--line2); border-radius: 999px; height: 18px; overflow: hidden; }
+.freq .bar { height: 100%; border-radius: 999px; min-width: 8px; }
+.freq .bar.f0 { background: linear-gradient(90deg, var(--brand), var(--brand-2)); }
+.freq .bar.f1 { background: var(--brand-2); opacity: .75; }
+.freq .bar.f2 { background: var(--brand-2); opacity: .45; }
+.freq .num { font-size: 12.5px; color: var(--muted); text-align: right; white-space: nowrap; }
+@media (max-width: 640px) { .freq .row { grid-template-columns: 120px 1fr 90px; } .freq .row .name { font-size: 12.5px; } }
+
+/* ============ 知识点卡 ============ */
+.kp { border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; background: var(--surface); }
+.kp + .kp { margin-top: 12px; }
+.kp h3 { font-size: 15.5px; margin: 0 0 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.kp ul { margin: 6px 0 0 1.2em; padding: 0; font-size: 14px; color: var(--ink); }
+.kp li { margin: 4px 0; }
+.kp li b { color: var(--ink); }
+.kp .warn {
+  margin-top: 10px; background: var(--accent-soft); border-left: 3px solid var(--accent);
+  padding: 7px 12px; border-radius: 0 8px 8px 0; font-size: 13px; color: var(--accent);
+}
+.kp .src { margin-top: 8px; font-size: 12.5px; color: var(--muted); }
+
+/* ============ 表格 ============ */
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl th { text-align: left; font-size: 13px; color: var(--muted); font-weight: 600; padding: 8px 10px; border-bottom: 2px solid var(--line); white-space: nowrap; }
+.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line2); vertical-align: top; }
+.tbl tr:hover td { background: var(--line2); }
+.tbl .file { font-family: ui-monospace, Consolas, monospace; font-size: 12px; background: var(--code-bg); padding: 2px 7px; border-radius: 6px; white-space: nowrap; }
+
+/* ============ 冲刺计划 / 守则 ============ */
+.phase { border-top: 3px solid var(--brand); }
+.phase.p2 { border-top-color: var(--brand-2); }
+.phase.p3 { border-top-color: var(--accent); }
+.phase.p4 { border-top-color: var(--ok); }
+.phase h3 { font-size: 15px; margin: 0 0 4px; }
+.phase .t { font-size: 12px; font-weight: 700; letter-spacing: .5px; color: var(--brand); }
+.phase.p3 .t { color: var(--accent); } .phase.p4 .t { color: var(--ok); }
+.phase ul { margin: 6px 0 0 1.1em; font-size: 13.5px; color: var(--muted); padding: 0; }
+.phase li { margin: 3px 0; }
+
+.rule { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--line2); }
+.rule:last-child { border-bottom: none; }
+.rule .n {
+  width: 34px; height: 34px; border-radius: 10px;
+  background: var(--brand-soft); color: var(--brand);
+  display: grid; place-items: center; font-weight: 800; font-size: 15px;
+}
+.rule p { margin: 0; font-size: 14px; }
+.rule b { color: var(--brand); }
+
+footer { border-top: 1px solid var(--line); padding: 24px 16px 40px; text-align: center; color: var(--muted); font-size: 13px; }
+footer p { margin: 4px 0; }
+
+/* ============ 在线刷题 ============ */
+.quiz-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
+.quiz-toolbar .grp { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.quiz-toolbar .lbl { font-size: 13px; font-weight: 600; color: var(--muted); margin-right: 2px; }
+.qchip {
+  padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--surface); font: inherit; font-size: 13.5px; cursor: pointer; color: var(--ink);
+}
+.qchip:hover { border-color: var(--brand); color: var(--brand); }
+.qchip.on { background: var(--brand); border-color: var(--brand); color: #fff; }
+
+.qhead { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.qhead .qno { font-weight: 800; font-size: 15px; }
+.qhead .timer {
+  margin-left: auto; font-variant-numeric: tabular-nums; font-weight: 700; font-size: 14px;
+  background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 3px 12px;
+}
+.qhead .timer.calm { background: var(--ok-soft); color: var(--ok); }
+
+.qstem { font-size: 15.5px; line-height: 1.8; font-weight: 500; margin: 4px 0 14px; white-space: pre-wrap; }
+.opts { display: grid; gap: 8px; }
+.opt {
+  display: flex; gap: 10px; align-items: baseline; text-align: left;
+  padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--surface); font: inherit; font-size: 14.5px; cursor: pointer; color: var(--ink); line-height: 1.6;
+}
+.opt:hover:not(:disabled) { border-color: var(--brand); }
+.opt:disabled { cursor: default; }
+.opt .key { font-weight: 800; color: var(--brand); flex: none; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { color: var(--ok); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { color: var(--bad); }
+.opt .mark { margin-left: auto; font-weight: 800; flex: none; }
+.opt.right .mark { color: var(--ok); } .opt.wrong .mark { color: var(--bad); }
+
+.explain {
+  margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+}
+.explain .ex-head {
+  padding: 8px 14px; background: var(--brand-soft); color: var(--brand);
+  font-size: 13px; font-weight: 700; letter-spacing: .5px;
+}
+.explain .ex-seg { display: grid; grid-template-columns: 92px 1fr; gap: 10px; padding: 9px 14px; border-top: 1px solid var(--line2); font-size: 13.5px; }
+.explain .ex-seg:first-of-type { border-top: none; }
+.explain .ex-seg b { color: var(--muted); font-size: 12.5px; }
+.explain .ex-seg .ex-k b { color: var(--brand); } .ex-seg .ex-s b { color: var(--ok); } .ex-seg .ex-w b { color: var(--accent); }
+
+.qnav { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.qgrid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.qcell {
+  width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--surface); font: inherit; font-size: 13px; font-weight: 700;
+  cursor: pointer; color: var(--ink); font-variant-numeric: tabular-nums;
+}
+.qcell:hover { border-color: var(--brand); color: var(--brand); }
+.qcell.cur { outline: 2px solid var(--brand); outline-offset: 1px; }
+.qcell.done-right { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+.qcell.done-wrong { background: var(--bad-soft); border-color: var(--bad); color: var(--bad); }
+.qcell.done { background: var(--line2); color: var(--muted); }
+
+.qstat { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--muted); }
+.qstat b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.qstat b.ok { color: var(--ok); } .qstat b.bad { color: var(--bad); }
+
+.topicstat { margin-top: 16px; }
+.topicstat .ts-row { display: grid; grid-template-columns: 150px 1fr 70px; gap: 10px; align-items: center; padding: 4px 0; font-size: 13px; }
+.topicstat .ts-bg { background: var(--line2); height: 12px; border-radius: 999px; overflow: hidden; }
+.topicstat .ts-bar { height: 100%; background: linear-gradient(90deg, var(--brand), var(--brand-2)); border-radius: 999px; }
+.topicstat .ts-num { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.quiz-empty { text-align: center; padding: 40px 16px; color: var(--muted); }
+.quiz-empty .big { font-size: 40px; margin-bottom: 8px; }
+
+/* ============ 入场动画 ============ */
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.reveal { animation: rise .45s cubic-bezier(.22,.61,.36,1) both; }
+.reveal:nth-of-type(2) { animation-delay: .05s; }
+.reveal:nth-of-type(3) { animation-delay: .10s; }
+.reveal:nth-of-type(4) { animation-delay: .15s; }
+@media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
+</style>
+<style>
+/* ============ 页面过渡动画 ============ */
+@keyframes pageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+body.page-enter { animation: pageIn .3s ease both; }
+html.page-exit body { opacity: 0; transform: translateY(-8px); transition: opacity .18s ease, transform .18s ease; }
+@media (prefers-reduced-motion: reduce) {
+  body.page-enter { animation: none; }
+  html.page-exit body { transition: none; opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body class="page-enter" data-page-node-id="ZNeiLg83S8PiACELBjM1xu">
+
+<header class="topbar" data-page-node-id="M992ocvo25DbunR3kzXRBA">
+  <a class="brand" href="index.html" data-page-node-id="HJY8vd4cYuh08CxngBIRAf">csp<span data-page-node-id="JksWXBjHfyLUvzWPwAyVOJ">S·pass</span></a>
+  <nav data-page-node-id="l8m8DRB5I5xWDKpIQZGlR2">
+    <a href="papers.html" data-page-node-id="zaIo84mZ9SfMlddMvgd8S4">真题 PDF</a>
+    <a class="on" href="quiz.html" data-page-node-id="JQ1ukPVOSKGDg6Z5thTery">在线刷题</a>
+    <a href="freq.html" data-page-node-id="ALjXTGFeW8zxFpB2PBv9do">考点频次</a>
+    <a href="choice.html" data-page-node-id="5nqZSEy1k11T96nruVWeWJ">重点清单</a>
+    <a href="read.html" data-page-node-id="QtarzJwnsfTuCmlbnC8Zv2">阅读程序</a>
+    <a href="complete.html" data-page-node-id="IKXp9IEWf5gUTCoJDWyxRJ">完善程序</a>
+    <a href="route.html" data-page-node-id="Y6F3AbVt4bnx6buCGRDQAW">学习路线</a>
+    <a href="method.html" data-page-node-id="nCA1cFi5EbVEK0TOPI0I57">方法论</a>
+    <a href="plan.html" data-page-node-id="6qBQMSi7Tr7jkQYPfkBgih">冲刺计划</a>
+    <a href="battle.html" data-page-node-id="WaXoWddCEFl3sT8B9BvCQu">考场守则</a>
+    <a href="rounds.html" data-page-node-id="BxPBRUVBKlnoEdenucnqHQ">两轮对比</a>
+    <a href="sites.html" data-page-node-id="ec91z4ehiuiBZlMgq5uq12">资源导航</a>
+  </nav>
+  <button class="themebtn" id="themebtn" type="button" title="切换深色 / 浅色" aria-label="切换深色或浅色主题" data-page-node-id="0RTETz30qDFtBQC4lRxugM">
+    <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true" data-page-node-id="JqL58W1MTaVqMBUHEC5FI5"><circle cx="12" cy="12" r="4" data-page-node-id="V24cemCFmSpGLP8DFCewVe"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" data-page-node-id="QcxJ7yrD87a4DmUdKlgzhP"/></svg>
+    <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true" hidden data-page-node-id="7TnO5M5OjGCPwffHY5FgxT"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.7 6.7 0 0 0 10.5 10.5z" data-page-node-id="vv7uNHZmxnmIR4az0LHXBu"/></svg>
+  </button>
+</header>
+
+
+<main id="top" class="page-main">
+
+<section id="quiz" class="reveal" style="margin-top:32px" data-page-node-id="JjdzXY2BuYZAEwLVHFsnoc">
+    <div class="card" data-page-node-id="JV1zfLgcn86NtqVYcZnlFW">
+      <h2 data-page-node-id="zp8cz4p5qPp6IHbXRAFdQE">在线刷题<span class="sub" data-page-node-id="hnBBTrHozt7bRjDy5lA9bL">内嵌 2024–2025 共 30 道真题 · 判分 + 三段式深度题解 + 错题本 + 学习统计，全程本地运行</span></h2>
+
+      <div class="quiz-toolbar" data-page-node-id="psCMfRV6B9QD9YDQHqGmhK">
+        <div class="grp" data-page-node-id="09XbZ4NuYYdUkezHyUF6h5"><span class="lbl" data-page-node-id="P1iNu6zQGszunAYuBMyd94">年份</span>
+          <button class="qchip on" data-mode="year" data-val="2025" type="button" data-page-node-id="w7QzIQmHCLPMBfhTlTQzoo">2025</button>
+          <button class="qchip" data-mode="year" data-val="2024" type="button" data-page-node-id="Bv2DH3w3WsGPPQjPASoFiS">2024</button>
+        </div>
+        <div class="grp" data-page-node-id="8iREQKCGFwAqiaJkCUJB37"><span class="lbl" data-page-node-id="DVG0jrvDhEvn8EmNzhJRE6">考点</span>
+          <button class="qchip" data-mode="topic" data-val="T0" type="button" data-page-node-id="AI5Km2cynfqrjSzYMxfTS4">T0 必保分</button>
+          <button class="qchip" data-mode="topic" data-val="T1" type="button" data-page-node-id="AV8D9LSDb5ODaocAxLdlEE">T1 高频</button>
+          <button class="qchip" data-mode="topic" data-val="T2" type="button" data-page-node-id="VyUoKdKI9rvJJpaEy7Ml47">T2 轮换</button>
+        </div>
+        <div class="grp" data-page-node-id="7agu9dgN1nEbO73qCUD4aJ">
+          <button class="qchip" data-mode="wrong" data-val="" type="button" data-page-node-id="JrsEGJ4SZqXJxIpBtWmlSo">📘 错题重刷</button>
+          <button class="qchip" data-mode="mock" data-val="" type="button" data-page-node-id="D71ZhHREmj6K92upfN6cC5">⏱ 限时模考 20'</button>
+        </div>
+      </div>
+
+      <div id="quizBody" data-page-node-id="7shh0WqERnuUlMhQpr7Ttt"><!-- JS 渲染 --></div>
+      <div id="quizStats" class="topicstat" hidden data-page-node-id="hs5EhGVQg9FPkPTXcQFxvm"></div>
+      <div id="quizGridWrap" hidden data-page-node-id="E0CIuFmUvMFQlr74pkKclk">
+        <div class="qstat" id="quizScore" data-page-node-id="gujCFR1OIDdvnMuFidywBF"></div>
+        <div class="qgrid" id="quizGrid" data-page-node-id="4kGTE8gVyDHlhGyj1pam1w"></div>
+      </div>
+    </div>
+    <p class="muted" style="font-size:13px;margin:14px 0 0" data-page-node-id="P5uzTOrXC0MV3f9METmDeK">
+      题目与答案来自社区整理版真题（2024/2025 第一轮单项选择），错题与统计保存在浏览器本地。
+      更多题量请用 <a href="https://www.cspfirstround.com/" target="_blank" rel="noopener" data-page-node-id="dLSavWyxxnRdlDO2GdyknC">CSP First Round</a>（1251 题三段式题解）、
+      <a href="https://www.csppass.com/" target="_blank" rel="noopener" data-page-node-id="RssZBUBdK9FmuWdDzbFgy6">CSPPass</a>（718 题）与
+      <a href="https://csp.wiki/docs/CSP-S" target="_blank" rel="noopener" data-page-node-id="kq87jVSDIR8oQO1qQ50pn4">CSP Wiki</a>（知识树）。
+    </p>
+  </section>
+
+<!-- ================= 频次 ================= -->
+
+<nav aria-label="分页导航" style="margin-top:36px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><a class="btn" href="papers.html">&larr; 上一部分：真题 PDF</a><a class="btn primary" href="freq.html">下一部分：考点频次 &rarr;</a></nav>
+</main>
+
+<footer data-page-node-id="mALXUmH9ybLQDDXG95JG30">
+  <p data-page-node-id="T560Zqzk1vrolYxBLYWwMc">CSP-S 第一轮备考全攻略 · 真题版权归 CCF 所有，社区整理版仅供备考学习</p>
+  <p data-page-node-id="hm5XI84GsTUmfTtkheHTIL">考点统计基于 2021–2025 真题逐题梳理 · 刷题站与学习路线参考 cspfirstround.com / csppass.com / csp.wiki · 页面设计仿 csppass.com</p>
+</footer>
+
+<script>
+/* ============ 主题三态切换：跟随系统 → 浅 → 深 → 循环 ============ */
+(function () {
+  var btn = document.getElementById('themebtn');
+  var sun = btn.querySelector('.ic-sun');
+  var moon = btn.querySelector('.ic-moon');
+  var root = document.documentElement;
+
+  function apply(mode) {
+    if (mode === 'light') { root.setAttribute('data-theme', 'light'); }
+    else if (mode === 'dark') { root.setAttribute('data-theme', 'dark'); }
+    else { root.removeAttribute('data-theme'); }
+    var dark = mode === 'dark' ||
+      (mode !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    sun.hidden = dark;
+    moon.hidden = !dark;
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+  apply(saved);
+
+  btn.addEventListener('click', function () {
+    var order = [null, 'light', 'dark'];
+    var cur = null;
+    try { cur = localStorage.getItem('theme'); } catch (e) {}
+    var next = order[(order.indexOf(cur) + 1) % order.length];
+    try {
+      if (next) localStorage.setItem('theme', next);
+      else localStorage.removeItem('theme');
+    } catch (e) {}
+    apply(next);
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+    var cur = null;
+    try { cur = localStorage.getItem('theme'); } catch (e) {}
+    if (!cur) apply(null);
+  });
+
+  /* ============ 倒计时（CSP-S 2026 第一轮：2026-09-19 14:30） ============ */
+  try {
+    var exam = new Date('2026-09-19T14:30:00+08:00');
+    var days = Math.ceil((exam - Date.now()) / 86400000);
+    var el = document.getElementById('days');
+    if (el) el.textContent = days > 0 ? days : '开考';
+  } catch (e) {}
+})();
+</script>
+
+<script>
+/* ============================================================
+   在线刷题引擎：题库（2024/2025 真题 30 题）+ 判分 + 三段式题解
+   + 错题本 + 学习统计 + 限时模考。纯本地，localStorage 持久化。
+   ============================================================ */
+(function () {
+  var Q = [
+    /* ---- 2025 ---- */
+    {id:'25-1', y:2025, n:1, cat:'T0', topic:'组合数学·不相邻排列',
+     stem:'5 个红色球和 5 个蓝色球（除颜色外完全相同）排成一排，要求任意两个蓝色球都不能相邻，有多少种不同的排列方法？',
+     opts:['25','30','6','120'], ans:2,
+     k:'组合数学 → 不相邻排列 → 插空法（T0 考点，五年 11 题年年必考）',
+     s:'先排 5 个红球：完全相同，仅 1 种。5 个红球产生 6 个空位（含两端），从中选 5 个放蓝球：C(6,5) = 6。',
+     w:'红球完全相同，不要乘 A(5,5)；「不相邻」三个字就是插空法的信号；n 个元素产生 n+1 个空位，不是 n−1 个。'},
+    {id:'25-2', y:2025, n:2, cat:'T2', topic:'字符串·KMP',
+     stem:'在 KMP 算法中，对于模式串 P="abacaba"，其 next 数组（next[i] 定义为 P[0..i] 的最长公共前后缀长度，下标从 0 开始）的值是？',
+     opts:['{0, 0, 1, 0, 1, 2, 3}','{0, 1, 2, 3, 4, 5, 6}','{0, 0, 1, 1, 2, 2, 3}','{0, 0, 0, 0, 1, 2, 3}'], ans:0,
+     k:'字符串 → KMP → next 数组手算（最长公共前后缀）',
+     s:'逐位计算：a→0；ab→0；aba→1（前缀 a = 后缀 a）；abac→0；abaca→1；abacab→2（ab）；abacaba→3（aba）。',
+     w:'next[i] 是整段 P[0..i] 的前后缀匹配，不是只看最后两个字符；枚举时从长到短验证，找不到才是 0。'},
+    {id:'25-3', y:2025, n:3, cat:'T1', topic:'数据结构·线段树',
+     stem:'对一个大小为 16（下标 0–15）的数组构建满线段树，查询区间 [3,11] 时，最少需要访问多少个树结点（包括路径上的父结点和完全包含在查询区间内的结点）？',
+     opts:['7','8','9','10'], ans:1,
+     k:'数据结构 → 线段树区间查询过程',
+     s:'[3,11] 递归分解为 [3,3]、[4,7]、[8,11] 三段；沿路径经过的父结点加上三个完全覆盖结点，合计 8 个。',
+     w:'计数必须包含「路过但不完全包含」的父结点——题干括号里特意强调了这个坑。'},
+    {id:'25-4', y:2025, n:4, cat:'T1', topic:'数据结构·Trie',
+     stem:'将字符串 "cat", "car", "cart", "case", "dog", "do" 插入空的 Trie 树。构建完成（含根节点）共有多少个结点？',
+     opts:['8','9','10','11'], ans:3,
+     k:'数据结构 → Trie（前缀树）构造与前缀共享',
+     s:'根 1 + cat(c,a,t)=3 + car 新增 r=1 + cart 新增 t=1 + case 共享 ca 新增 s,e=2 + dog(d,o,g)=3 + do 共享 do=0，共 11。',
+     w:'case 与 cat/car 共享前缀 ca，别当成全新分支；根节点必须计入；建议按字典序画图。'},
+    {id:'25-5', y:2025, n:5, cat:'T0', topic:'图论·拓扑排序',
+     stem:'对于一个包含 n 个结点、m 条边的有向无环图（DAG），其拓扑排序的结果有多少种可能？',
+     opts:['只有 1 种','最多 n 种','等于 n−m 种','以上都不对'], ans:3,
+     k:'图论 → 拓扑排序方案数',
+     s:'拓扑序数量完全取决于图结构：链状 DAG 仅 1 种；无边 DAG 有 n! 种；均不符合前三个选项 → 选「以上都不对」。',
+     w:'不要以为上限是 n——无边的 DAG 拓扑序是全排列 n! 种。'},
+    {id:'25-6', y:2025, n:6, cat:'T1', topic:'数据结构·哈希',
+     stem:'大小为 13 的哈希表，闭散列法线性探查解决冲突，哈希函数 H(key)=key mod 13。依次插入 18, 26, 35, 9, 68, 74，74 最终放在哪个索引？',
+     opts:['5','7','9','11'], ans:3,
+     k:'数据结构 → 哈希 → 闭散列线性探查手算（近 3 年连考）',
+     s:'18→5；26→0；35→9；9→9 冲突探查到 10；68→3；74→9 冲突→10 已占→11。',
+     w:'每插一个都要重新算；探查到表尾要回绕到 0；别忘了 9 已经把位置 10 占了，74 得再 +1。'},
+    {id:'25-7', y:2025, n:7, cat:'T0', topic:'图论·最小生成树',
+     stem:'8 个顶点的完全图（编号 1–8），边权等于两顶点编号之差的绝对值。该图的最小生成树总权重是多少？',
+     opts:['7','8','9','10'], ans:0,
+     k:'图论 → 最小生成树（Kruskal 贪心思想）',
+     s:'权为 1 的边连接相邻编号，用 7 条权 1 的边连成链 1-2-3-…-8 即可连通，总权 7；生成树恰需 n−1=7 条边，已是下界。',
+     w:'完全图边虽多，MST 只用 n−1 条边；总权下界 = 至少 7 条边 × 最小权 1 = 7。'},
+    {id:'25-8', y:2025, n:8, cat:'T1', topic:'数据结构·BST 遍历',
+     stem:'一棵二叉搜索树的后序遍历序列是 2, 5, 4, 8, 12, 10, 6，其前序遍历是？',
+     opts:['6, 4, 2, 5, 10, 8, 12','6, 4, 5, 2, 10, 12, 8','2, 4, 5, 6, 8, 10, 12','12, 8, 10, 5, 2, 4, 6'], ans:0,
+     k:'数据结构 → BST 遍历序列互推',
+     s:'后序末位 6 为根；小于 6 的 {2,5,4} 划入左子树，{8,12,10} 划入右子树；递归重建后前序为 6,4,2,5,10,8,12。',
+     w:'BST「左小右大」是划分左右子树的唯一依据；后序遍历最后一个元素是根。'},
+    {id:'25-9', y:2025, n:9, cat:'T2', topic:'动态规划·0/1 背包',
+     stem:'0-1 背包问题，容量 20。5 个物品重量为 7,5,4,3,6，价值为 15,12,9,7,13。能获得的最大总价值是多少？',
+     opts:['43','41','45','44'], ans:3,
+     k:'动态规划 → 0/1 背包小规模手算',
+     s:'枚举四件组合：物品 1+3+4+5 重量 7+4+3+6=20 恰好装满，价值 15+9+7+13=44，为最大。',
+     w:'别漏「恰好装满」的组合；三件组合最大只有 40（1+2+5）；规模小时穷举比 DP 转移表更快。'},
+    {id:'25-10', y:2025, n:10, cat:'T1', topic:'数据结构·LCA',
+     stem:'在一棵以结点 1 为根的树中，LCA(12, 18) = 4。那么下列哪个 LCA 组合是不可能出现的？',
+     opts:['LCA(12, 4) = 4','LCA(18, 4) = 4','LCA(12, 18, 4) = 4','LCA(12, 1) = 4'], ans:3,
+     k:'数据结构 → 树 → 最近公共祖先性质',
+     s:'1 是根：12 与根的 LCA 必为根本身，即 LCA(12,1)=1，不可能等于 4；其余三种在 4 为 12、18 祖先时均成立。',
+     w:'任何结点与根的 LCA 恒为根——这是 LCA 性质题的固定套路。'},
+    {id:'25-11', y:2025, n:11, cat:'T0', topic:'算法·主定理',
+     stem:'递归关系 T(n) = 2T(n/2) + O(n²) 描述某分治算法，其时间复杂度是？',
+     opts:['O(n)','O(n log n)','O(n²)','O(n² log n)'], ans:2,
+     k:'复杂度分析 → 主定理（五年 9 题的 T0 考点）',
+     s:'主定理：n^{log₂2} = n 与 f(n) = n² 比较，f 占优 → T(n) = O(n²)。逐层求和也可验证：n²(1 + 1/2 + 1/4 + …) ≈ 2n²。',
+     w:'别看到 2T(n/2) 就条件反射选 O(n log n)——那是不带 O(n²) 项时的答案。'},
+    {id:'25-12', y:2025, n:12, cat:'T1', topic:'数据结构·堆',
+     stem:'初始为空的最小堆依次插入 20, 12, 15, 8, 10, 5，然后连续执行两次 delete-min。此时堆顶元素是？',
+     opts:['10','12','15','20'], ans:0,
+     k:'数据结构 → 最小堆插入/删除手算（2025 高发）',
+     s:'全部插入后堆内为 {5,8,10,12,15,20}；第一次 delete-min 删 5，堆顶变 8；第二次删 8，堆顶变 10。',
+     w:'删除操作是把末尾元素放到堆顶再下滤（sift down）；堆操作必须画图逐步追踪，禁止心算。'},
+    {id:'25-13', y:2025, n:13, cat:'T0', topic:'数学·容斥原理',
+     stem:'1 到 1000 之间，不能被 2、3、5 中任意一个数整除的整数有多少个？',
+     opts:['266','267','333','734'], ans:0,
+     k:'数学 → 容斥原理（组合数学家族的固定成员）',
+     s:'1000 − (500+333+200) + (166+100+66) − 33 = 266。减去各倍数、加回两两公倍数、再减去 2·3·5 的公倍数。',
+     w:'⌊1000/3⌋ = 333 要向下取整；容斥的「加回成对、减去三重」符号交替，漏一项全错。'},
+    {id:'25-14', y:2025, n:14, cat:'T2', topic:'动态规划·重叠子问题',
+     stem:'朴素递归计算斐波那契数列是指数级，动态规划（或迭代）是线性级。造成巨大差异的根本原因是？',
+     opts:['递归函数调用栈开销过大','操作系统对递归深度有限制','朴素递归中存在大量重叠子问题未被重复利用','动态规划使用了更少的数据存储空间'], ans:2,
+     k:'动态规划 → 重叠子问题（DP 有效的本质）',
+     s:'朴素递归对同一子问题（如 F(5)）重复计算指数次；DP 保证每个子问题只求解一次并缓存，故降为线性。',
+     w:'不是栈开销也不是存储空间的问题——根本原因是「重复计算」。'},
+    {id:'25-15', y:2025, n:15, cat:'T2', topic:'算法·贪心调度',
+     stem:'5 个不可抢占任务在一台机器上执行，处理时长 3,4,2,5,1，截止时刻 5,10,3,15,11。超时惩罚等于处理时长。为最小化总惩罚，应优先执行？',
+     opts:['处理时间最短的任务 A5','截止时间最早的任务 A3','处理时间最长的任务 A4','任意一个任务都可以'], ans:1,
+     k:'算法 → 贪心 → 带截止时间的调度（EDF 策略）',
+     s:'经典结论：最小化超时任务数/惩罚的贪心策略是 EDF（Earliest Deadline First），优先做截止时间最早的 A3。',
+     w:'SPT（最短处理时间优先）只优化平均完成时间，不适用于带截止时间的惩罚模型。'},
+    /* ---- 2024 ---- */
+    {id:'24-1', y:2024, n:1, cat:'T1', topic:'常识·Linux',
+     stem:'在 Linux 系统中，如果想显示当前工作目录的路径，应该使用哪个命令？',
+     opts:['pwd','cd','ls','echo'], ans:0,
+     k:'计算机常识 → Linux 命令（2021–2024 连续 4 年第 1 题：ls→cd→mkdir→pwd）',
+     s:'pwd = print working directory，打印当前工作目录。',
+     w:'cd 是切换目录、ls 是列出文件、echo 是输出文本；这 2 分是「背了就有」的送分题。'},
+    {id:'24-2', y:2024, n:2, cat:'T0', topic:'复杂度·顺序查找',
+     stem:'长度为 n 的无序整数数组，元素互不相同。找到最大元素的时间复杂度是？',
+     opts:['O(n)','O(log n)','O(n log n)','O(1)'], ans:0,
+     k:'复杂度分析 → 顺序查找（T0，年年 1–2 题）',
+     s:'无序数组不能二分，只能逐个比较，共 n−1 次 → O(n)。',
+     w:'「互不相同」不影响量级；无序是关键——有序才能 O(1)（末尾元素）。'},
+    {id:'24-3', y:2024, n:3, cat:'T1', topic:'常识·栈溢出',
+     stem:'以下哪个 C++ 函数调用会造成溢出？',
+     opts:['int foo(){ return 0; }','int bar(){ int x=1; return x; }','void baz(){ int a[1000]; baz(); }','void qux(){ return; }'], ans:2,
+     k:'计算机常识 → 递归与栈溢出成因',
+     s:'baz 无递归出口，每次调用压入栈帧，栈空间耗尽即 stack overflow。',
+     w:'局部数组 1000 个 int 很小不是主因；「无出口的递归」才是。'},
+    {id:'24-4', y:2024, n:4, cat:'T0', topic:'组合·排列',
+     stem:'10 名选手参加比赛，前三名分获金、银、铜牌。不允许并列、每人只能得一枚奖牌，不同的颁奖方式有多少种？',
+     opts:['120','720','504','1000'], ans:1,
+     k:'组合数学 → 排列 A(n,m)（金银铜有序）',
+     s:'三名次有区别 → 排列：A(10,3) = 10×9×8 = 720。',
+     w:'C(10,3)=120 是陷阱——名次不同就必须用排列；先判「有序/无序」再选公式。'},
+    {id:'24-5', y:2024, n:5, cat:'T2', topic:'数据结构·队列',
+     stem:'下面哪个数据结构最适合实现先进先出（FIFO）的功能？',
+     opts:['栈','队列','线性表','二叉搜索树'], ans:1,
+     k:'数据结构 → 队列性质',
+     s:'队列：先进先出 FIFO；栈：后进先出 LIFO。',
+     w:'线性表是逻辑结构统称（包含栈和队列），不特指 FIFO。'},
+    {id:'24-6', y:2024, n:6, cat:'T0', topic:'递推·逐项计算',
+     stem:'已知 f(1)=1，且对 n≥2 有 f(n)=f(n−1)+f(⌊n/2⌋)，则 f(4) 的值为？',
+     opts:['4','5','6','7'], ans:1,
+     k:'递推 → 逐项列表计算（复杂度家族常客）',
+     s:'f(2)=f(1)+f(1)=2；f(3)=f(2)+f(1)=3；f(4)=f(3)+f(2)=5。',
+     w:'⌊n/2⌋ 是向下取整：⌊3/2⌋=1；列表逐项写出来，别跳步。'},
+    {id:'24-7', y:2024, n:7, cat:'T0', topic:'图论·欧拉图',
+     stem:'n 个顶点的无向图是欧拉图。以下关于该图的描述中，哪一项不一定正确？',
+     opts:['所有顶点的度数均为偶数','该图连通','该图存在一个欧拉回路','该图的边数是奇数'], ans:3,
+     k:'图论 → 欧拉图判定（经典概念题）',
+     s:'欧拉图 ⇔ 连通 + 所有顶点度数为偶数（存在欧拉回路）。边数的奇偶没有任何约束。',
+     w:'「边数是奇数」不是必要条件——三角形（3 条边）和正方形（4 条边）都可以是欧拉图。'},
+    {id:'24-8', y:2024, n:8, cat:'T2', topic:'算法·二分',
+     stem:'对数组进行二分查找的过程中，以下哪个条件必须满足？',
+     opts:['数组必须是有序的','数组必须是无序的','数组长度必须是 2 的幂','数组中的元素必须为整数'], ans:0,
+     k:'算法 → 二分查找的前提条件',
+     s:'二分依赖有序性：每次与中点比较后才能确定舍弃哪一半。',
+     w:'长度是否 2 的幂只影响边界实现，不是前提；元素也可以是小数。'},
+    {id:'24-9', y:2024, n:9, cat:'T1', topic:'数论·逆元',
+     stem:'计算自然数 n 在数 m 意义下的乘法逆元，下列哪种算法最为适合？',
+     opts:['使用暴力法依次尝试','使用扩展欧几里得算法','使用快速幂法','使用线性筛法'], ans:1,
+     k:'数论 → 逆元求法（隔年稳定考点）',
+     s:'ax ≡ 1 (mod m) 即 ax + my = 1，用扩展欧几里得求解；m 为质数时也可用费马小定理 a^(m−2)，即快速幂法。',
+     w:'快速幂法有前提（m 为质数）；通解选扩欧，别被「快速幂」的高大上迷惑。'},
+    {id:'24-10', y:2024, n:10, cat:'T1', topic:'数据结构·哈希',
+     stem:'哈希表有 n 个键值对，装载因子 α（0 < α ≤ 1）。使用开放地址法解决冲突时，最坏情况下查找一个元素的时间复杂度为？',
+     opts:['O(1)','O(log n)','O(1/(1−α))','O(n)'], ans:3,
+     k:'数据结构 → 哈希冲突与复杂度',
+     s:'最坏情况所有键哈希到同一位置，探查链长度 n → O(n)。',
+     w:'O(1/(1−α)) 是平均期望界，题目问的是「最坏」——审题是这类题的生死线。'},
+    {id:'24-11', y:2024, n:11, cat:'T1', topic:'树·完全二叉树',
+     stem:'一棵 h 层的完全二叉树，最多包含多少个结点？',
+     opts:['2^h − 1','2^(h+1) − 1','2^h','2^(h+1)'], ans:0,
+     k:'数据结构 → 完全二叉树性质（年年考树）',
+     s:'第 k 层最多 2^(k−1) 个，前 h 层求和 = 2^h − 1，满二叉树时取到最大。',
+     w:'h 从 1 开始计数：1 层 1 个、2 层 3 个、3 层 7 个，规律即 2^h − 1。'},
+    {id:'24-12', y:2024, n:12, cat:'T0', topic:'组合·环计数',
+     stem:'10 个顶点的完全图（任意两点间都有边），有多少个长度为 4 的环？',
+     opts:['120','210','630','5040'], ans:2,
+     k:'组合数学 → 环计数（圆排列的变体）',
+     s:'选 4 个点：C(10,4)=210；4 个点的完全图上环的个数 = 4!/(2×4) = 3；合计 210×3 = 630。',
+     w:'4 个点能构成的环是 3 个（不是 1 个也不是 6 个）；除以 2 是因为正反两个方向算同一个环。'},
+    {id:'24-13', y:2024, n:13, cat:'T2', topic:'数学·数字和',
+     stem:'定义 f(n) 为 n 的各位数字之和。使 f(f(x)) = 10 的最小自然数 x 是多少？',
+     opts:['29','199','299','399'], ans:1,
+     k:'数学 → 数字和分析（构造题）',
+     s:'需要 f(x) 的数字和为 10，最小取 f(x)=19；两位数的 f(f(x)) 最多到 9，不够；f(x)=19 的最小 x 是 199。',
+     w:'先分析内层 f(x) 的可能值域再反推 x；199 → 1+9+9=19 → 1+9=10。'},
+    {id:'24-14', y:2024, n:14, cat:'T0', topic:'组合·交换次数',
+     stem:'长度为 n 的 01 字符串含 k 个 1，每次可交换相邻两个字符。最坏情况下将这 k 个 1 全部移到字符串最右边需要多少次交换？',
+     opts:['k','k(k−1)/2','(n−k) × k','(2n−k−1) × k / 2'], ans:2,
+     k:'组合/排序 → 相邻交换 = 逆序对计数',
+     s:'最坏是 k 个 1 全在左端：每个 1 都要越过右侧全部 n−k 个 0，共 (n−k)×k 次交换。',
+     w:'相邻交换次数 = 逆序对数；k(k−1)/2 只统计 1 之间的对——它们相同，根本不必互换。'},
+    {id:'24-15', y:2024, n:15, cat:'T0', topic:'图论·删边方案',
+     stem:'一张含 7 个顶点的有向图，要删除其中一些边使节点 1 到节点 7 没有可行路径，且删除的边数最少。共有多少种可行的删边集合？',
+     opts:['1','2','3','4'], ans:3,
+     k:'图论 → 连通性 → 割边组合枚举',
+     s:'画图标出 1→7 的全部路径，逐一枚举 2 条边的组合并验证断路，共 4 种可行方案。',
+     w:'题目数的是「集合个数」不是「边数」；必须枚举验证，不能只看最短路径。'}
+  ];
+
+  var LS_WRONG = 'csps_wrong_v1', LS_STATS = 'csps_stats_v1';
+  function lsGet(k, d) { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (e) { return d; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+
+  var body = document.getElementById('quizBody');
+  var statsBox = document.getElementById('quizStats');
+  var gridWrap = document.getElementById('quizGridWrap');
+  var gridEl = document.getElementById('quizGrid');
+  var scoreEl = document.getElementById('quizScore');
+
+  var st = { mode: 'year', val: '2025', list: [], pos: 0, answers: {}, judged: {}, mock: false, review: false, timer: null, deadline: 0 };
+
+  function qById(id) { for (var i = 0; i < Q.length; i++) if (Q[i].id === id) return Q[i]; return null; }
+
+  function buildList() {
+    var l = [];
+    if (st.mode === 'year') { for (var i = 0; i < Q.length; i++) if (String(Q[i].y) === st.val) l.push(Q[i]); }
+    else if (st.mode === 'topic') { for (var j = 0; j < Q.length; j++) if (Q[j].cat === st.val) l.push(Q[j]); }
+    else if (st.mode === 'wrong') {
+      var w = lsGet(LS_WRONG, []);
+      for (var k = 0; k < w.length; k++) { var q = qById(w[k]); if (q) l.push(q); }
+    } else if (st.mode === 'mock') {
+      var pool = Q.slice();
+      for (var s = pool.length - 1; s > 0; s--) { var r = Math.floor(Math.random() * (s + 1)); var t = pool[s]; pool[s] = pool[r]; pool[r] = t; }
+      l = pool.slice(0, 15);
+    }
+    return l;
+  }
+
+  function start(mode, val) {
+    if (st.timer) { clearInterval(st.timer); st.timer = null; }
+    st.mode = mode; st.val = val || '';
+    st.mock = (mode === 'mock');
+    st.list = buildList();
+    st.pos = 0; st.answers = {}; st.judged = {}; st.review = false;
+    var chips = document.querySelectorAll('.qchip');
+    for (var i = 0; i < chips.length; i++) {
+      chips[i].classList.toggle('on', chips[i].getAttribute('data-mode') === mode && (mode === 'mock' || mode === 'wrong' || chips[i].getAttribute('data-val') === val));
+    }
+    if (st.mock && st.list.length) {
+      st.deadline = Date.now() + 20 * 60 * 1000;
+      st.timer = setInterval(tick, 500);
+    }
+    renderStats();
+    render();
+  }
+
+  function tick() {
+    var left = st.deadline - Date.now();
+    var el = document.getElementById('mockTimer');
+    if (!el) { clearInterval(st.timer); st.timer = null; return; }
+    if (left <= 0) { clearInterval(st.timer); st.timer = null; submitMock(); return; }
+    var m = Math.floor(left / 60000), s = Math.floor((left % 60000) / 1000);
+    el.textContent = '⏱ 剩余 ' + m + ':' + (s < 10 ? '0' : '') + s;
+    el.className = 'timer' + (left > 300000 ? ' calm' : '');
+  }
+
+  function render() {
+    gridWrap.hidden = true;
+    if (!st.list.length) {
+      body.innerHTML = '<div class="quiz-empty"><div class="big">📘</div>错题本是空的——先去做几道题，答错的会自动收进来。</div>';
+      return;
+    }
+    if (st.mock && !st.review) { renderMock(); return; }
+    renderOne();
+  }
+
+  function optHtml(q, idx, state) {
+    var cls = 'opt', mark = '';
+    if (state === 'sel') cls += ' sel';
+    if (state === 'right') { cls += ' right'; mark = '<span class="mark">✓ 正确答案</span>'; }
+    if (state === 'wrong') { cls += ' wrong'; mark = '<span class="mark">✗ 你的选择</span>'; }
+    return '<button type="button" class="' + cls + '" data-pick="' + idx + '" ' + (state ? 'disabled' : '') + '><span class="key">' + 'ABCD'[idx] + '</span><span>' + q.opts[idx] + '</span>' + mark + '</button>';
+  }
+
+  function renderOne() {
+    var q = st.list[st.pos];
+    var picked = st.answers[q.id];
+    var judged = !!st.judged[q.id];
+    var opts = '';
+    for (var i = 0; i < q.opts.length; i++) {
+      var state = '';
+      if (judged) { if (i === q.ans) state = 'right'; else if (i === picked) state = 'wrong'; }
+      else if (i === picked) state = 'sel';
+      opts += optHtml(q, i, judged ? state : (i === picked ? 'sel' : ''));
+    }
+    var ex = '';
+    if (judged) {
+      ex = '<div class="explain"><div class="ex-head">三段式深度题解</div>'
+        + '<div class="ex-seg ex-k"><b>① 考点定位</b><span>' + q.k + '</span></div>'
+        + '<div class="ex-seg ex-s"><b>② 解题过程</b><span>' + q.s + '</span></div>'
+        + '<div class="ex-seg ex-w"><b>③ 易错提醒</b><span>' + q.w + '</span></div></div>';
+    }
+    var nav = '<div class="qnav">'
+      + (st.pos > 0 ? '<button class="btn" type="button" data-act="prev">← 上一题</button>' : '')
+      + (st.pos < st.list.length - 1 ? '<button class="btn primary" type="button" data-act="next">下一题 →</button>' : (st.mode === 'wrong' ? '<button class="btn primary" type="button" data-act="clearwrong">清空错题本</button>' : ''))
+      + '</div>';
+    body.innerHTML = '<div class="qhead"><span class="qno">' + q.y + ' 年第 ' + q.n + ' 题</span>'
+      + '<span class="tag judge">' + q.topic + '</span><span class="tag ' + q.cat.toLowerCase() + '">' + q.cat + (q.cat === 'T0' ? ' 必保分' : q.cat === 'T1' ? ' 高频' : ' 轮换') + '</span></div>'
+      + '<div class="qstem">' + q.stem + '</div>'
+      + '<div class="opts">' + opts + '</div>' + ex + nav;
+    renderGrid();
+    renderScore();
+  }
+
+  function renderMock() {
+    var q = st.list[st.pos];
+    var picked = st.answers[q.id];
+    var opts = '';
+    for (var i = 0; i < q.opts.length; i++) opts += optHtml(q, i, i === picked ? 'sel' : '');
+    var answered = Object.keys(st.answers).length;
+    body.innerHTML = '<div class="qhead"><span class="qno">第 ' + (st.pos + 1) + ' / ' + st.list.length + ' 题</span>'
+      + '<span class="tag judge">' + q.topic + '</span>'
+      + '<span class="tag ' + q.cat.toLowerCase() + '">' + q.cat + '</span>'
+      + '<span class="timer" id="mockTimer">⏱ --:--</span></div>'
+      + '<div class="qstem">' + q.stem + '</div>'
+      + '<div class="opts">' + opts + '</div>'
+      + '<div class="qnav">'
+      + (st.pos > 0 ? '<button class="btn" type="button" data-act="prev">← 上一题</button>' : '')
+      + (st.pos < st.list.length - 1 ? '<button class="btn primary" type="button" data-act="next">下一题 →</button>' : '')
+      + '<button class="btn primary" type="button" data-act="submit">交卷（已答 ' + answered + '/' + st.list.length + '）</button>'
+      + '</div>';
+    renderGrid();
+    tick();
+  }
+
+  function renderGrid() {
+    gridWrap.hidden = false;
+    var html = '';
+    for (var i = 0; i < st.list.length; i++) {
+      var q = st.list[i], cls = 'qcell';
+      if (st.judged[q.id]) cls += (st.answers[q.id] === q.ans) ? ' done-right' : ' done-wrong';
+      else if (st.answers[q.id] != null) cls += ' done';
+      if (i === st.pos) cls += ' cur';
+      html += '<button type="button" class="' + cls + '" data-goto="' + i + '">' + (i + 1) + '</button>';
+    }
+    gridEl.innerHTML = html;
+  }
+
+  function renderScore() {
+    var r = 0, w = 0, done = 0;
+    for (var i = 0; i < st.list.length; i++) {
+      var q = st.list[i];
+      if (st.judged[q.id]) { done++; if (st.answers[q.id] === q.ans) r++; else w++; }
+      else if (st.answers[q.id] != null) done++;
+    }
+    var pct = (r + w) ? Math.round(r / (r + w) * 100) : 0;
+    scoreEl.innerHTML = '<span>进度 <b>' + done + '/' + st.list.length + '</b></span>'
+      + '<span>正确 <b class="ok">' + r + '</b></span><span>错误 <b class="bad">' + w + '</b></span>'
+      + '<span>正确率 <b>' + pct + '%</b></span>'
+      + '<span style="margin-left:auto"><button class="btn" type="button" data-act="restart">重做本轮</button></span>';
+  }
+
+  function judge(q, pick) {
+    st.judged[q.id] = true;
+    var right = pick === q.ans;
+    var wrongBook = lsGet(LS_WRONG, []);
+    var at = wrongBook.indexOf(q.id);
+    if (!right && at < 0) { wrongBook.push(q.id); lsSet(LS_WRONG, wrongBook); }
+    if (right && at >= 0) { wrongBook.splice(at, 1); lsSet(LS_WRONG, wrongBook); }
+    var stats = lsGet(LS_STATS, {});
+    var t = stats[q.topic] || { r: 0, w: 0 };
+    if (right) t.r++; else t.w++;
+    stats[q.topic] = t; lsSet(LS_STATS, stats);
+  }
+
+  function renderStats() {
+    var stats = lsGet(LS_STATS, {});
+    var keys = Object.keys(stats);
+    if (!keys.length) { statsBox.hidden = true; return; }
+    var rows = '';
+    keys.sort(function (a, b) { return (stats[a].r + stats[a].w) - (stats[b].r + stats[b].w); });
+    for (var i = 0; i < keys.length; i++) {
+      var k = keys[i], s = stats[k], tot = s.r + s.w, pct = Math.round(s.r / tot * 100);
+      rows += '<div class="ts-row"><span>' + k + '</span><div class="ts-bg"><div class="ts-bar" style="width:' + pct + '%"></div></div><span class="ts-num">' + s.r + '/' + tot + ' · ' + pct + '%</span></div>';
+    }
+    statsBox.hidden = false;
+    statsBox.innerHTML = '<div style="font-size:14px;font-weight:700;margin-bottom:6px">学习统计（本地累计，按考点正确率）</div>' + rows;
+  }
+
+  function submitMock() {
+    st.review = true;
+    var r = 0, w = 0;
+    for (var i = 0; i < st.list.length; i++) {
+      var q = st.list[i];
+      if (st.answers[q.id] != null) { judge(q, st.answers[q.id]); if (st.answers[q.id] === q.ans) r++; else w++; }
+    }
+    var score = r * 2;
+    body.innerHTML = '<div class="quiz-empty"><div class="big">📝</div>'
+      + '<div style="font-size:18px;font-weight:800">交卷成功：答对 <span style="color:var(--ok)">' + r + '</span> 题 / 答错 <span style="color:var(--bad)">' + w + '</span> 题 / 未答 ' + (st.list.length - r - w) + ' 题</div>'
+      + '<div class="muted" style="margin-top:6px">按初赛标准折算：<b>' + score + '</b> / 30 分（15 题 × 2 分）——点击下方题号逐题回顾三段式题解</div>'
+      + '<div style="margin-top:14px"><button class="btn primary" type="button" data-act="restart">再来一套</button></div></div>';
+    renderGrid();
+    scoreEl.innerHTML = '<span>模考成绩 <b class="ok">' + r + '</b> / ' + st.list.length + ' 题</span><span>折合 <b>' + score + '</b>/30 分</span><span style="margin-left:auto"><button class="btn" type="button" data-act="restart">再来一套</button></span>';
+    renderStats();
+  }
+
+  /* ---- 事件委托 ---- */
+  document.querySelectorAll('.qchip').forEach(function (c) {
+    c.addEventListener('click', function () { start(c.getAttribute('data-mode'), c.getAttribute('data-val')); });
+  });
+
+  body.addEventListener('click', function (e) {
+    var t = e.target;
+    var pick = t.closest && t.closest('[data-pick]');
+    if (pick) {
+      var q = st.list[st.pos], p = +pick.getAttribute('data-pick');
+      if (st.mock && !st.review) { st.answers[q.id] = p; renderMock(); }
+      else if (!st.judged[q.id]) { st.answers[q.id] = p; judge(q, p); renderOne(); renderStats(); }
+      return;
+    }
+    var act = t.closest && t.closest('[data-act]');
+    if (act) {
+      var a = act.getAttribute('data-act');
+      if (a === 'prev' && st.pos > 0) { st.pos--; st.review ? renderOne() : render(); }
+      else if (a === 'next' && st.pos < st.list.length - 1) { st.pos++; st.review ? renderOne() : render(); }
+      else if (a === 'restart') { start(st.mode, st.val); }
+      else if (a === 'submit') { submitMock(); }
+      else if (a === 'clearwrong') { lsSet(LS_WRONG, []); start('wrong'); }
+      return;
+    }
+    var goto = t.closest && t.closest('[data-goto]');
+    if (goto) { st.pos = +goto.getAttribute('data-goto'); st.review ? renderOne() : render(); }
+  });
+
+  start('year', '2025');
+})();
+</script>
+
+<script>
+/* ============ 页面跳转过渡：淡出 -> 跳转，新页面淡入 ============ */
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    document.body.classList.add('page-enter');
+  });
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a || a.target === '_blank') return;
+    var href = a.getAttribute('href');
+    if (!href || /^(https?:|mailto:|#|data:)/i.test(href) || /[.]pdf$/i.test(href)) return;
+    e.preventDefault();
+    document.documentElement.classList.add('page-exit');
+    setTimeout(function () { window.location.href = href; }, 180);
+  });
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      document.documentElement.classList.remove('page-exit');
+      document.body.classList.add('page-enter');
+    }
+  });
+})();
+</script>
+</body>
+</html>
