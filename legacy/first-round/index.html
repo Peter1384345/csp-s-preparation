@@ -1,0 +1,1301 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSP-S 初赛备考全攻略 · CSPSpass</title>
+<meta name="description" content="2021–2025 CSP-S 第一轮近 5 年真题 PDF 汇总与高频考点分级清单：选择题频次统计、阅读程序六大代码模式、完善程序五大算法家族、考前冲刺计划。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%235B3DF5'/><text x='12' y='17' font-size='13' font-weight='800' text-anchor='middle' fill='white' font-family='Arial'>S</text></svg>" type="image/svg+xml">
+<style>
+/* ============ 设计令牌（仿 csppass.com：靛紫主色 + 珊瑚橙强调，中性色带紫味） ============ */
+:root {
+  --bg: #F7F6FB;
+  --surface: #FFFFFF;
+  --ink: #1C1830;
+  --muted: #6B6483;
+  --line: #E4E1EE;
+  --line2: #F0EEF6;
+  --brand: #5B3DF5;
+  --brand-2: #8A5CF6;
+  --brand-soft: #EFEBFE;
+  --accent: #FF6B3D;
+  --accent-soft: #FFEFE9;
+  --ok: #0E9F6E;
+  --ok-soft: #E3F7EF;
+  --gold: #B07800;
+  --gold-soft: #FBF3DC;
+  --bad: #E02424;
+  --bad-soft: #FDECEC;
+  --code-bg: #F4F2FA;
+  --radius: 10px;
+  --shadow-sm: 0 1px 2px rgba(28,24,48,.06);
+  --shadow-md: 0 8px 24px -14px rgba(46,30,110,.45);
+  --shadow-lg: 0 18px 40px -20px rgba(46,30,110,.55);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131024; --surface: #1C1833; --ink: #EAE6F7; --muted: #9C93B8;
+    --line: #2E2850; --line2: #241F42;
+    --brand: #A78BFA; --brand-2: #C4B0FD; --brand-soft: #241D46;
+    --accent: #FF8A63; --accent-soft: #38211A;
+    --ok: #3DDC97; --ok-soft: #102E23;
+    --gold: #E3C56A; --gold-soft: #33290F;
+    --bad: #FF7A7A; --bad-soft: #331A1D;
+    --code-bg: #171331;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+    --shadow-md: 0 8px 24px -14px rgba(0,0,0,.7);
+    --shadow-lg: 0 18px 40px -20px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131024; --surface: #1C1833; --ink: #EAE6F7; --muted: #9C93B8;
+  --line: #2E2850; --line2: #241F42;
+  --brand: #A78BFA; --brand-2: #C4B0FD; --brand-soft: #241D46;
+  --accent: #FF8A63; --accent-soft: #38211A;
+  --ok: #3DDC97; --ok-soft: #102E23;
+  --gold: #E3C56A; --gold-soft: #33290F;
+  --bad: #FF7A7A; --bad-soft: #331A1D;
+  --code-bg: #171331;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+  --shadow-md: 0 8px 24px -14px rgba(0,0,0,.7);
+  --shadow-lg: 0 18px 40px -20px rgba(0,0,0,.8);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.7 system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+a { color: inherit; }
+main { max-width: 940px; margin: 0 auto; padding: 24px 16px 64px; }
+section { scroll-margin-top: 70px; }
+
+/* ============ 顶栏 ============ */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  padding: 12px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.brand { font-size: 22px; font-weight: 800; text-decoration: none; letter-spacing: -0.5px; }
+.brand span {
+  background: var(--brand); color: #fff;
+  border-radius: 8px; padding: 0 8px; margin-left: 2px;
+}
+.topbar nav { display: flex; gap: 18px; flex-wrap: wrap; }
+.topbar nav a {
+  text-decoration: none; font-weight: 600; font-size: 14.5px;
+  color: var(--muted); padding: 4px 0; border-bottom: 2px solid transparent;
+}
+.topbar nav a:hover { color: var(--ink); }
+.topbar nav a.on { color: var(--brand); border-bottom-color: var(--brand); }
+
+.themebtn {
+  display: grid; place-items: center;
+  width: 34px; height: 34px; padding: 0;
+  border: 1px solid var(--line); border-radius: 9px;
+  background: var(--surface); color: var(--muted); cursor: pointer;
+}
+.themebtn:hover { color: var(--brand); border-color: var(--brand); }
+.themebtn svg { width: 17px; height: 17px; display: block; }
+.themebtn .ic-sun, .themebtn .ic-moon { grid-area: 1/1; }
+.topbar > .themebtn { margin-left: auto; }
+
+/* ============ 通用件 ============ */
+.btn {
+  display: inline-block; padding: 8px 16px;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: var(--surface); color: var(--ink);
+  font: inherit; font-weight: 600; text-decoration: none; cursor: pointer;
+}
+.btn:hover { border-color: var(--brand); color: var(--brand); }
+.btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+.btn.primary:hover { filter: brightness(1.07); color: #fff; }
+.btn.lg { padding: 11px 22px; font-size: 16px; }
+
+.card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 18px;
+}
+.card h2 { font-size: 16px; margin: 0 0 12px; }
+.card h2 .sub { font-size: 13px; font-weight: 500; color: var(--muted); margin-left: 8px; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
+@media (max-width: 700px) { .cards { grid-template-columns: 1fr; } }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: inline-block; padding: 6px 12px;
+  border: 1px solid var(--line); border-radius: 999px;
+  text-decoration: none; font-size: 14px;
+}
+.chip:hover { border-color: var(--brand); color: var(--brand); }
+.chip b { color: var(--brand); font-variant-numeric: tabular-nums; }
+.chips.big .chip { padding: 12px 20px; font-size: 16px; }
+
+.tag {
+  display: inline-block; font-size: 12px; padding: 1px 8px;
+  border-radius: 999px; background: var(--line2); color: var(--muted); white-space: nowrap;
+}
+.tag.t0 { background: var(--bad-soft); color: var(--bad); }
+.tag.t1 { background: var(--gold-soft); color: var(--gold); }
+.tag.t2 { background: var(--ok-soft); color: var(--ok); }
+.tag.judge { background: var(--brand-soft); color: var(--brand); }
+.tag.accent { background: var(--accent-soft); color: var(--accent); }
+
+.muted { color: var(--muted); }
+
+/* ============ 资源导航卡片 ============ */
+.sitegrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin: 14px 0 4px; }
+.site-card {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 16px; border: 1px solid var(--line); border-radius: 12px;
+  background: var(--bg); text-decoration: none; color: inherit;
+  transition: border-color .15s, transform .15s;
+}
+.site-card:hover { border-color: var(--brand); transform: translateY(-2px); }
+.site-card .sc-head { display: flex; align-items: center; gap: 8px; }
+.site-card .sc-name { font-weight: 700; font-size: 15px; color: var(--ink); }
+.site-card .sc-url { font-size: 12px; color: var(--brand); font-family: ui-monospace, Consolas, monospace; }
+.site-card p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.site-more { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+code {
+  background: var(--code-bg); padding: 1px 6px; border-radius: 6px;
+  font-family: ui-monospace, Consolas, "Courier New", monospace; font-size: .9em;
+}
+
+/* ============ Hero ============ */
+.hero { padding: 24px 0 8px; display: grid; grid-template-columns: 1.25fr 1fr; gap: 32px; align-items: center; }
+@media (max-width: 860px) { .hero { grid-template-columns: 1fr; } .hero-visual { display: none; } }
+.hero h1 { font-size: 32px; margin: 0 0 12px; letter-spacing: -0.5px; }
+.hero .hero-em { color: var(--accent); }
+.hero p { color: var(--muted); max-width: 62ch; margin: 0; }
+.cta { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 32px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.hero-stats span { color: var(--muted); font-size: 14px; }
+.hero-stats b { display: block; font-size: 26px; color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: -.5px; }
+.hero-stats b small { font-size: 14px; font-weight: 600; color: var(--muted); }
+
+.hero-visual { position: relative; height: 300px; perspective: 1200px; }
+.hero-card {
+  position: absolute; inset: 0; border-radius: 14px;
+  background: var(--surface); border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg); transform-style: preserve-3d;
+}
+.hero-card-back { transform: rotateY(-14deg) rotateX(4deg) translateZ(-70px) translate(26px,26px); opacity: .45; }
+.hero-card-mid  { transform: rotateY(-14deg) rotateX(4deg) translateZ(-35px) translate(13px,13px); opacity: .7; }
+.hero-card-front {
+  display: grid; align-content: start; gap: 10px; padding: 22px 24px;
+  transform: rotateY(-14deg) rotateX(4deg);
+  transition: transform .5s cubic-bezier(.22,.61,.36,1);
+}
+.hero-visual:hover .hero-card-front { transform: rotateY(-4deg) rotateX(1deg) scale(1.02); }
+.hc-meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+.hc-tag { font-style: normal; font-size: 11px; padding: 1px 7px; border-radius: 999px; background: var(--brand-soft); color: var(--brand); }
+.hc-stem { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.7; }
+.hc-opt { padding: 8px 12px; font-size: 13.5px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); }
+.hc-opt-on {
+  display: flex; align-items: center; justify-content: space-between;
+  border-color: var(--ok); background: var(--ok-soft); color: var(--ok); font-weight: 600;
+}
+.hc-ok { font-style: normal; }
+
+/* ============ 频次条形图 ============ */
+.freq .row { display: grid; grid-template-columns: 190px 1fr 120px; gap: 12px; align-items: center; padding: 6px 0; }
+.freq .row .name { font-size: 14px; font-weight: 600; }
+.freq .bar-bg { background: var(--line2); border-radius: 999px; height: 18px; overflow: hidden; }
+.freq .bar { height: 100%; border-radius: 999px; min-width: 8px; }
+.freq .bar.f0 { background: linear-gradient(90deg, var(--brand), var(--brand-2)); }
+.freq .bar.f1 { background: var(--brand-2); opacity: .75; }
+.freq .bar.f2 { background: var(--brand-2); opacity: .45; }
+.freq .num { font-size: 12.5px; color: var(--muted); text-align: right; white-space: nowrap; }
+@media (max-width: 640px) { .freq .row { grid-template-columns: 120px 1fr 90px; } .freq .row .name { font-size: 12.5px; } }
+
+/* ============ 知识点卡 ============ */
+.kp { border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; background: var(--surface); }
+.kp + .kp { margin-top: 12px; }
+.kp h3 { font-size: 15.5px; margin: 0 0 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.kp ul { margin: 6px 0 0 1.2em; padding: 0; font-size: 14px; color: var(--ink); }
+.kp li { margin: 4px 0; }
+.kp li b { color: var(--ink); }
+.kp .warn {
+  margin-top: 10px; background: var(--accent-soft); border-left: 3px solid var(--accent);
+  padding: 7px 12px; border-radius: 0 8px 8px 0; font-size: 13px; color: var(--accent);
+}
+.kp .src { margin-top: 8px; font-size: 12.5px; color: var(--muted); }
+
+/* ============ 表格 ============ */
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl th { text-align: left; font-size: 13px; color: var(--muted); font-weight: 600; padding: 8px 10px; border-bottom: 2px solid var(--line); white-space: nowrap; }
+.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--line2); vertical-align: top; }
+.tbl tr:hover td { background: var(--line2); }
+.tbl .file { font-family: ui-monospace, Consolas, monospace; font-size: 12px; background: var(--code-bg); padding: 2px 7px; border-radius: 6px; white-space: nowrap; }
+
+/* ============ 冲刺计划 / 守则 ============ */
+.phase { border-top: 3px solid var(--brand); }
+.phase.p2 { border-top-color: var(--brand-2); }
+.phase.p3 { border-top-color: var(--accent); }
+.phase.p4 { border-top-color: var(--ok); }
+.phase h3 { font-size: 15px; margin: 0 0 4px; }
+.phase .t { font-size: 12px; font-weight: 700; letter-spacing: .5px; color: var(--brand); }
+.phase.p3 .t { color: var(--accent); } .phase.p4 .t { color: var(--ok); }
+.phase ul { margin: 6px 0 0 1.1em; font-size: 13.5px; color: var(--muted); padding: 0; }
+.phase li { margin: 3px 0; }
+
+.rule { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--line2); }
+.rule:last-child { border-bottom: none; }
+.rule .n {
+  width: 34px; height: 34px; border-radius: 10px;
+  background: var(--brand-soft); color: var(--brand);
+  display: grid; place-items: center; font-weight: 800; font-size: 15px;
+}
+.rule p { margin: 0; font-size: 14px; }
+.rule b { color: var(--brand); }
+
+footer { border-top: 1px solid var(--line); padding: 24px 16px 40px; text-align: center; color: var(--muted); font-size: 13px; }
+footer p { margin: 4px 0; }
+
+/* ============ 在线刷题 ============ */
+.quiz-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
+.quiz-toolbar .grp { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.quiz-toolbar .lbl { font-size: 13px; font-weight: 600; color: var(--muted); margin-right: 2px; }
+.qchip {
+  padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--surface); font: inherit; font-size: 13.5px; cursor: pointer; color: var(--ink);
+}
+.qchip:hover { border-color: var(--brand); color: var(--brand); }
+.qchip.on { background: var(--brand); border-color: var(--brand); color: #fff; }
+
+.qhead { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.qhead .qno { font-weight: 800; font-size: 15px; }
+.qhead .timer {
+  margin-left: auto; font-variant-numeric: tabular-nums; font-weight: 700; font-size: 14px;
+  background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 3px 12px;
+}
+.qhead .timer.calm { background: var(--ok-soft); color: var(--ok); }
+
+.qstem { font-size: 15.5px; line-height: 1.8; font-weight: 500; margin: 4px 0 14px; white-space: pre-wrap; }
+.opts { display: grid; gap: 8px; }
+.opt {
+  display: flex; gap: 10px; align-items: baseline; text-align: left;
+  padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--surface); font: inherit; font-size: 14.5px; cursor: pointer; color: var(--ink); line-height: 1.6;
+}
+.opt:hover:not(:disabled) { border-color: var(--brand); }
+.opt:disabled { cursor: default; }
+.opt .key { font-weight: 800; color: var(--brand); flex: none; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { color: var(--ok); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { color: var(--bad); }
+.opt .mark { margin-left: auto; font-weight: 800; flex: none; }
+.opt.right .mark { color: var(--ok); } .opt.wrong .mark { color: var(--bad); }
+
+.explain {
+  margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+}
+.explain .ex-head {
+  padding: 8px 14px; background: var(--brand-soft); color: var(--brand);
+  font-size: 13px; font-weight: 700; letter-spacing: .5px;
+}
+.explain .ex-seg { display: grid; grid-template-columns: 92px 1fr; gap: 10px; padding: 9px 14px; border-top: 1px solid var(--line2); font-size: 13.5px; }
+.explain .ex-seg:first-of-type { border-top: none; }
+.explain .ex-seg b { color: var(--muted); font-size: 12.5px; }
+.explain .ex-seg .ex-k b { color: var(--brand); } .ex-seg .ex-s b { color: var(--ok); } .ex-seg .ex-w b { color: var(--accent); }
+
+.qnav { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.qgrid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.qcell {
+  width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--surface); font: inherit; font-size: 13px; font-weight: 700;
+  cursor: pointer; color: var(--ink); font-variant-numeric: tabular-nums;
+}
+.qcell:hover { border-color: var(--brand); color: var(--brand); }
+.qcell.cur { outline: 2px solid var(--brand); outline-offset: 1px; }
+.qcell.done-right { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+.qcell.done-wrong { background: var(--bad-soft); border-color: var(--bad); color: var(--bad); }
+.qcell.done { background: var(--line2); color: var(--muted); }
+
+.qstat { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--muted); }
+.qstat b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.qstat b.ok { color: var(--ok); } .qstat b.bad { color: var(--bad); }
+
+.topicstat { margin-top: 16px; }
+.topicstat .ts-row { display: grid; grid-template-columns: 150px 1fr 70px; gap: 10px; align-items: center; padding: 4px 0; font-size: 13px; }
+.topicstat .ts-bg { background: var(--line2); height: 12px; border-radius: 999px; overflow: hidden; }
+.topicstat .ts-bar { height: 100%; background: linear-gradient(90deg, var(--brand), var(--brand-2)); border-radius: 999px; }
+.topicstat .ts-num { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.quiz-empty { text-align: center; padding: 40px 16px; color: var(--muted); }
+.quiz-empty .big { font-size: 40px; margin-bottom: 8px; }
+
+/* ============ 入场动画 ============ */
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.reveal { animation: rise .45s cubic-bezier(.22,.61,.36,1) both; }
+.reveal:nth-of-type(2) { animation-delay: .05s; }
+.reveal:nth-of-type(3) { animation-delay: .10s; }
+.reveal:nth-of-type(4) { animation-delay: .15s; }
+@media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#top">csp<span>S·pass</span></a>
+  <nav>
+    <a href="#papers" class="on">真题 PDF</a>
+    <a href="#quiz">在线刷题</a>
+    <a href="#freq">考点频次</a>
+    <a href="#choice">重点清单</a>
+    <a href="#read">阅读程序</a>
+    <a href="#complete">完善程序</a>
+    <a href="#route">学习路线</a>
+    <a href="#method">方法论</a>
+    <a href="#plan">冲刺计划</a>
+    <a href="#battle">考场守则</a>
+    <a href="#rounds">两轮对比</a>
+    <a href="#sites">资源导航</a>
+  </nav>
+  <button class="themebtn" id="themebtn" type="button" title="切换深色 / 浅色" aria-label="切换深色或浅色主题">
+    <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+    <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true" hidden><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.7 6.7 0 0 0 10.5 10.5z"/></svg>
+  </button>
+</header>
+
+<main id="top">
+
+  <!-- ================= Hero ================= -->
+  <section class="hero reveal">
+    <div class="hero-copy">
+      <h1>CSP-S 初赛备考<span class="hero-em">全攻略</span></h1>
+      <p>2021–2025 近 5 年第一轮真题逐题梳理：75 道选择题频次统计、阅读程序六大代码模式、完善程序五大算法家族，并精选 3 个免费在线刷题站（合计 1900+ 题带深度题解）。距 CSP-S 2026 第一轮认证（9 月 19 日 14:30–16:30）——按高频考点优先复习。</p>
+      <div class="cta">
+        <a class="btn primary lg" href="#quiz">在线刷题（30 道真题）</a>
+        <a class="btn lg" href="#papers">下载真题 PDF</a>
+      </div>
+      <div class="hero-stats">
+        <span><b>5</b>套真卷</span>
+        <span><b>75</b>道选择题</span>
+        <span><b>1900<small>+</small></b>在线题库</span>
+        <span><b id="days">13</b>天倒计时</span>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-card hero-card-back"></div>
+      <div class="hero-card hero-card-mid"></div>
+      <div class="hero-card hero-card-front">
+        <span class="hc-meta">2025 · 第 1 题<i class="hc-tag">单选</i></span>
+        <p class="hc-stem">5 个红球和 5 个蓝球排成一排，要求任意两个蓝球都不相邻，有多少种排法？</p>
+        <span class="hc-opt">A　25</span>
+        <span class="hc-opt hc-opt-on">B　C(6,5) = 6　<i class="hc-ok">✓</i></span>
+        <span class="hc-opt">C　120</span>
+        <span class="hc-opt">D　30</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 真题 PDF ================= -->
+  <section id="papers" class="card reveal" style="margin-top:24px">
+    <h2>近 5 年真题 PDF（2021–2025）<span class="sub">已下载到本地 papers/ 目录，点击即开</span></h2>
+    <div class="chips big">
+      <a class="chip" href="papers/CSP-S_2021_第一轮试题及参考答案.pdf">2021 年 <b>试题+答案</b></a>
+      <a class="chip" href="papers/CSP-S_2022_第一轮试题.pdf">2022 年 <b>试题</b></a>
+      <a class="chip" href="papers/CSP-S_2022_第一轮答案.pdf">2022 年 <b>答案</b></a>
+      <a class="chip" href="papers/CSP-S_2023_第一轮试题.pdf">2023 年 <b>试题</b></a>
+      <a class="chip" href="papers/CSP-S_2023_第一轮答案.pdf">2023 年 <b>答案</b></a>
+      <a class="chip" href="papers/CSP-S_2024_第一轮试题.pdf">2024 年 <b>试题</b></a>
+      <a class="chip" href="papers/CSP-S_2024_第一轮答案.pdf">2024 年 <b>答案</b></a>
+      <a class="chip" href="papers/CSP-S_2025_第一轮试题及答案_社区整理版.md">2025 年 <b>社区整理版</b></a>
+      <a class="chip" href="papers/CSP第一轮复习资料_45页.pdf">第一轮 <b>复习资料 45 页</b></a>
+      <a class="chip" href="papers/CSP-S1_初赛备考指南与答题技巧.pdf">备考指南 <b>答题技巧</b></a>
+    </div>
+    <p class="muted" style="font-size:13px;margin:14px 0 0">
+      CCF 官方不公开发行初赛试题，2021–2024 为社区电子重排版、2025 为民间回忆整理版，来源
+      <a href="https://github.com/mingyush/csp" target="_blank" rel="noopener">mingyush/csp</a> ·
+      <a href="https://github.com/winterant/oi" target="_blank" rel="noopener">winterant/oi</a>；
+      更多在线资源：<a href="https://hkoi.org/zh/cspjs-past-problems" target="_blank" rel="noopener">HKOI 历届试题</a> ·
+      <a href="https://www.luogu.com.cn/" target="_blank" rel="noopener">洛谷题库</a> ·
+      <a href="https://www.noi.cn/" target="_blank" rel="noopener">NOI 官网</a>
+    </p>
+  </section>
+
+  <!-- ================= 在线刷题 ================= -->
+  <section id="quiz" class="reveal" style="margin-top:32px">
+    <div class="card">
+      <h2>在线刷题<span class="sub">内嵌 2024–2025 共 30 道真题 · 判分 + 三段式深度题解 + 错题本 + 学习统计，全程本地运行</span></h2>
+
+      <div class="quiz-toolbar">
+        <div class="grp"><span class="lbl">年份</span>
+          <button class="qchip on" data-mode="year" data-val="2025" type="button">2025</button>
+          <button class="qchip" data-mode="year" data-val="2024" type="button">2024</button>
+        </div>
+        <div class="grp"><span class="lbl">考点</span>
+          <button class="qchip" data-mode="topic" data-val="T0" type="button">T0 必保分</button>
+          <button class="qchip" data-mode="topic" data-val="T1" type="button">T1 高频</button>
+          <button class="qchip" data-mode="topic" data-val="T2" type="button">T2 轮换</button>
+        </div>
+        <div class="grp">
+          <button class="qchip" data-mode="wrong" data-val="" type="button">📘 错题重刷</button>
+          <button class="qchip" data-mode="mock" data-val="" type="button">⏱ 限时模考 20'</button>
+        </div>
+      </div>
+
+      <div id="quizBody"><!-- JS 渲染 --></div>
+      <div id="quizStats" class="topicstat" hidden></div>
+      <div id="quizGridWrap" hidden>
+        <div class="qstat" id="quizScore"></div>
+        <div class="qgrid" id="quizGrid"></div>
+      </div>
+    </div>
+    <p class="muted" style="font-size:13px;margin:14px 0 0">
+      题目与答案来自社区整理版真题（2024/2025 第一轮单项选择），错题与统计保存在浏览器本地。
+      更多题量请用 <a href="https://www.cspfirstround.com/" target="_blank" rel="noopener">CSP First Round</a>（1251 题三段式题解）、
+      <a href="https://www.csppass.com/" target="_blank" rel="noopener">CSPPass</a>（718 题）与
+      <a href="https://csp.wiki/docs/CSP-S" target="_blank" rel="noopener">CSP Wiki</a>（知识树）。
+    </p>
+  </section>
+
+<!-- ================= 频次 ================= -->
+  <section id="freq" class="reveal" style="margin-top:32px">
+    <div class="card">
+      <h2>选择题考点频次排行<span class="sub">2021–2025 · 75 题 + 2019–2024 共 90 题交叉校验</span></h2>
+      <div class="freq">
+        <div class="row"><div class="name">组合数学与计数</div><div class="bar-bg"><div class="bar f0" style="width:100%"></div></div><div class="num">11 题 · 年年必考</div></div>
+        <div class="row"><div class="name">图论概念与算法</div><div class="bar-bg"><div class="bar f0" style="width:91%"></div></div><div class="num">10 题 · 年年 2–3 题</div></div>
+        <div class="row"><div class="name">时间复杂度分析</div><div class="bar-bg"><div class="bar f0" style="width:82%"></div></div><div class="num">9 题 · 年年 1–2 题</div></div>
+        <div class="row"><div class="name">树 / 堆 / 遍历</div><div class="bar-bg"><div class="bar f1" style="width:73%"></div></div><div class="num">8 题 · 2025 高发</div></div>
+        <div class="row"><div class="name">哈希表</div><div class="bar-bg"><div class="bar f1" style="width:46%"></div></div><div class="num">5 题 · 近 3 年连考</div></div>
+        <div class="row"><div class="name">数论（gcd/逆元/快速幂）</div><div class="bar-bg"><div class="bar f1" style="width:46%"></div></div><div class="num">5 题 · 隔年稳定</div></div>
+        <div class="row"><div class="name">Linux / 计算机常识</div><div class="bar-bg"><div class="bar f1" style="width:46%"></div></div><div class="num">5 题 · 2021–24 连考</div></div>
+        <div class="row"><div class="name">排序算法</div><div class="bar-bg"><div class="bar f2" style="width:37%"></div></div><div class="num">4 题</div></div>
+        <div class="row"><div class="name">栈 / 队列 / 表达式</div><div class="bar-bg"><div class="bar f2" style="width:37%"></div></div><div class="num">4 题</div></div>
+        <div class="row"><div class="name">动态规划</div><div class="bar-bg"><div class="bar f2" style="width:37%"></div></div><div class="num">4 题 · 2025 回归</div></div>
+        <div class="row"><div class="name">字符串算法（KMP 等）</div><div class="bar-bg"><div class="bar f2" style="width:28%"></div></div><div class="num">3 题</div></div>
+        <div class="row"><div class="name">位运算 / 逻辑 / 进制</div><div class="bar-bg"><div class="bar f2" style="width:28%"></div></div><div class="num">3 题</div></div>
+        <div class="row"><div class="name">贪心 / 二分 / 分治</div><div class="bar-bg"><div class="bar f2" style="width:28%"></div></div><div class="num">3 题</div></div>
+        <div class="row"><div class="name">概率期望</div><div class="bar-bg"><div class="bar f2" style="width:18%"></div></div><div class="num">2 题</div></div>
+      </div>
+      <p class="muted" style="font-size:13px;margin:12px 0 0">
+        <span class="tag t0">T0 必保分 ≈10–12 分</span>
+        <span class="tag t1">T1 高频 ≈8–10 分</span>
+        <span class="tag t2">T2 轮换考点</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 选择题重点 ================= -->
+  <section id="choice" class="reveal" style="margin-top:32px">
+    <div class="card">
+      <h2>选择题：最可能考的知识点详解<span class="sub">按复习优先级排列</span></h2>
+
+      <div class="kp">
+        <h3>1. 组合数学与计数 <span class="tag t0">T0 · 5 年 11 题</span></h3>
+        <ul>
+          <li><b>排列组合手算</b>：A(n,m)、C(n,m)、分组分配、插板法、<b>不相邻排列用插空法</b>（2025 蓝球题 → 6）</li>
+          <li>圆排列（除以环长）、<b>环计数</b>（2024 完全图长 4 环 = A(10,4)/8）、错位排列</li>
+          <li><b>容斥原理</b>：1000 内不被 2/3/5 整除 = 1000−(500+333+200)+(166+100+66)−33 = <b>266</b></li>
+        </ul>
+        <div class="warn">易错：定序要除重复度；环翻转算同一个；容斥符号交替别丢项</div>
+        <div class="src">2021 苹果 / 2022 组队 / 2023 数字圆环 / 2024 颁奖+环计数 / 2025 蓝球+容斥</div>
+      </div>
+
+      <div class="kp">
+        <h3>2. 图论概念与算法 <span class="tag t0">T0 · 5 年 10 题</span></h3>
+        <ul>
+          <li><b>最短路</b>：Dijkstra 贪心思想、不适用负权；<b>MST</b>：Prim/Kruskal（2025 完全图 |i−j| 权重 → 7）</li>
+          <li><b>拓扑排序</b>（2025 DAG 方案数不定）、<b>欧拉图</b>（2024：连通 + 全偶度）、握手定理、删边断路枚举（2024）</li>
+        </ul>
+        <div class="warn">易错：稀疏图复杂度比较把 m=θ(n) 代入再比（2023 第 3 题选 A）</div>
+        <div class="src">2021 最短路 / 2022 强连通 / 2023 染色+拓扑 / 2024 欧拉+删边 / 2025 MST+拓扑+LCA</div>
+      </div>
+
+      <div class="kp">
+        <h3>3. 时间复杂度分析 <span class="tag t0">T0 · 5 年 9 题</span></h3>
+        <ul>
+          <li><b>主定理</b>：T(n)=2T(n/2)+O(n) → O(n log n)；T(n)=2T(n/2)+O(n²) → O(n²)（2025）</li>
+          <li>递推式逐项列表（2024：f(n)=f(n−1)+f(⌊n/2⌋)，f(4)=5）；哈希最坏 O(n)（2024）</li>
+        </ul>
+        <div class="src">2021 斐波那契 / 2022 最坏比较 / 2023 复杂度对比 / 2024 找最大值+哈希 / 2025 主定理</div>
+      </div>
+
+      <div class="kp">
+        <h3>4. 树 / 堆 / 遍历 <span class="tag t1">T1 · 8 题 · 2025 爆发</span></h3>
+        <ul>
+          <li>完全二叉树 h 层最多 2^h−1 结点；<b>遍历序列互推</b>（2025 BST 后序→前序）；哈夫曼 WPL 手算</li>
+          <li><b>最小堆插入/删除手算</b>（2025：删两次最小后堆顶 10）；LCA 性质（LCA(12,1) 必为根）</li>
+        </ul>
+        <div class="warn">易错：线段树查询结点数、Trie 结点数这类"数结点"题要画图数（2025 均考）</div>
+        <div class="src">2021 哈夫曼 / 2022 完全二叉树 / 2023 树重心 / 2024 完全二叉树 / 2025 线段树+Trie+BST+LCA+堆</div>
+      </div>
+
+      <div class="kp">
+        <h3>5. 哈希表 <span class="tag t1">T1 · 近 3 年连考</span></h3>
+        <ul>
+          <li><b>闭散列线性探查手算</b>：H(key)=key mod 13，冲突 +1 回绕（2025：74 → 11）</li>
+          <li>装载因子与冲突率；最坏退化 O(n)（2024）；开散列 vs 闭散列比较</li>
+        </ul>
+        <div class="src">2021 / 2022 哈希函数 / 2024 最坏复杂度 / 2025 线性探查</div>
+      </div>
+
+      <div class="kp">
+        <h3>6. 数论 <span class="tag t1">T1</span> &nbsp;&amp;&nbsp; 7. Linux 与常识 <span class="tag t1">T1 · 2021–24 连考</span></h3>
+        <ul>
+          <li>数论：gcd/扩展欧几里得/<b>乘法逆元选扩欧或快速幂</b>（2024）、同余、埃氏筛</li>
+          <li>Linux 四连击：ls(2021)→cd(2022)→mkdir(2023)→pwd(2024)+chmod；g++ 编译、补码、大小端、IP、栈溢出成因</li>
+        </ul>
+        <div class="warn">常识题是性价比之王：考前 3 天背一页纸稳拿 2–4 分。2025 首次缺席，但别赌它不回来</div>
+      </div>
+
+      <div class="kp">
+        <h3>8–14. T2 轮换考点 <span class="tag t2">考前各过一遍</span></h3>
+        <ul>
+          <li><b>排序</b>：稳定性判定、冒泡交换次数；<b>栈/队列</b>：出栈序列合法性、后缀表达式（2024）</li>
+          <li><b>DP</b>：0/1 背包手算（2025 答案 44）、LCS（2023）、重叠子问题=DP 快的根本原因（2025）</li>
+          <li><b>字符串</b>：KMP next 数组手算（2025 "abacaba" → 0 0 1 0 1 2 3）；<b>贪心</b>：截止时间调度（2025）；<b>二分</b>：前提有序（2024）</li>
+          <li><b>位运算</b>：&amp; | ^ 优先级、x&amp;(x−1) 消最低位 1；<b>概率期望</b>（2023）：期望线性性</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 阅读程序 ================= -->
+  <section id="read" class="reveal" style="margin-top:32px">
+    <div class="card">
+      <h2>阅读程序题：六大代码模式<span class="sub">40 分主战场 · 5 年 15 段代码归纳</span></h2>
+      <table class="tbl">
+        <tr><th>年份</th><th>程序 1</th><th>程序 2</th><th>程序 3</th></tr>
+        <tr><td>2021</td><td>球体体积交</td><td>区间最值 DP</td><td>Base64 编解码</td></tr>
+        <tr><td>2022</td><td>字符串匹配优化</td><td>基数排序</td><td>Base64 编解码</td></tr>
+        <tr><td>2023</td><td>位运算扰动加密</td><td>埃氏筛 + 统计</td><td>二分答案</td></tr>
+        <tr><td>2024</td><td>快排递归（深度参数）</td><td>状压 DP</td><td>树哈希（双模）</td></tr>
+        <tr><td>2025</td><td>DFS 全排列计数</td><td>扔鸡蛋（分段搜索）</td><td>折半搜索 MITM</td></tr>
+      </table>
+      <div class="kp" style="margin-top:14px">
+        <h3>练到一眼识别的 6 类 <span class="tag judge">核心 40 分</span></h3>
+        <ul>
+          <li><b>① 递归/DFS 全排列与回溯</b>：盯回溯语句（<code>flag[i]=false</code>）、剪枝条件；判断题最爱"删掉某行后结果是否变化"（2025 连考 3 处）</li>
+          <li><b>② 排序变体</b>：快排分区手算、递归深度参数、边界 <code>i&lt;=j</code>；基数排序按位分桶</li>
+          <li><b>③ 位运算技巧</b>：异或加密（2023）、<code>(x&gt;&gt;i)&amp;1</code> 取位、快速幂（2025）</li>
+          <li><b>④ 筛法与数论</b>：埃氏筛标记、gcd 递归、模运算溢出</li>
+          <li><b>⑤ 二分框架</b>：二分答案、<code>upper_bound</code>；2025 扔鸡蛋 = "2 蛋 w(w+1)/2≥n 分段策略"，量级 O(√n)</li>
+          <li><b>⑥ 哈希/字符串</b>：双模哈希（2024 树哈希）、Base64 位分割（连考两年）、KMP</li>
+        </ul>
+        <div class="warn">铁律：判断题先做（多为送分）；小样例代入<b>列表格手算，禁止心算</b>；"删某行"先分清影响正确性还是只影响效率；程序 3 最难放最后</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 完善程序 ================= -->
+  <section id="complete" class="reveal" style="margin-top:32px">
+    <div class="card">
+      <h2>完善程序题：五大算法家族<span class="sub">30 分 · 最短路家族 5 年 4 考</span></h2>
+      <table class="tbl">
+        <tr><th>年份</th><th>程序 1</th><th>程序 2</th></tr>
+        <tr><td>2021</td><td>BFS（魔法数字状态转移）</td><td>RMQ 区间最值</td></tr>
+        <tr><td>2022</td><td>归并求第 k 小（双指针）</td><td>BFS 倒水问题</td></tr>
+        <tr><td>2023</td><td>第 k 短路（Dijkstra+扩展）</td><td>最大子段和分治</td></tr>
+        <tr><td>2024</td><td>序列合并 + upper_bound</td><td>次短路（双指标优先队列）</td></tr>
+        <tr><td>2025</td><td>分层图最短路（免一次费）</td><td>组合编码 + 位运算解码</td></tr>
+      </table>
+      <div class="kp" style="margin-top:14px">
+        <h3>五大算法家族 <span class="tag accent">占完善程序 90% 戏份</span></h3>
+        <ul>
+          <li><b>① 最短路家族（5 年 4 考！）</b>：Dijkstra 堆优化默写级熟练。变体：<b>分层图/状态扩展</b>——多一维 <code>d[u][used]</code>（2025 免费边）、次短路（最短+次短两组值）、第 k 短路。填空爱考：堆初始化、松弛条件 <code>&lt;</code>、第二维转移、末尾 <code>min(d[t][0], d[t][1])</code></li>
+          <li><b>② BFS/搜索</b>：队列初始化、vis/dist 判重、状态扩展、终止条件；倒水/密码锁类"状态即结点"</li>
+          <li><b>③ DP 与分治</b>：ST 表、最大子段和（跨中点合并）；填空爱考初始化与转移边界</li>
+          <li><b>④ 归并/双指针</b>：第 k 小、有序合并；i/j 谁动、哨兵处理</li>
+          <li><b>⑤ 组合数学+位运算工程实现（2025 新趋势）</b>：<code>res*(w−t+1)/t</code>、<code>(sig&gt;&gt;i)&amp;1</code>、<code>prev_permutation</code></li>
+        </ul>
+        <div class="warn">技巧：先读题干功能描述再读代码；4 个选项通常 2 个明显错，剩下 2 个比对边界（差 1、初始化、&lt; 还是 &lt;=）</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 逐年速查 ================= -->
+  <section id="year" class="reveal" style="margin-top:32px">
+    <div class="card">
+      <h2>五年选择题考点速查<span class="sub">考前最后一晚对着过电影</span></h2>
+      <table class="tbl">
+        <tr><th>年份</th><th>考过的知识点</th></tr>
+        <tr><td><b>2021</b></td><td>Linux ls、二进制加法、递归层数、排序稳定性、哈夫曼、二叉树遍历、字符串代价、斐波那契复杂度、组合（苹果）、三角形构成、最短路</td></tr>
+        <tr><td><b>2022</b></td><td>Linux cd、二进制逻辑、出栈序列、排序稳定性、基数排序、哈希函数、贪心局限、图存储、完全二叉树编号、强连通、2-正则图、组合组队、最坏比较、信息熵</td></tr>
+        <tr><td><b>2023</b></td><td>Linux mkdir、数字圆环、复杂度对比、哈夫曼、图染色、LCS、概率期望、位运算优先级、快排最坏、树重心、拓扑排序、运算符优先级、不动点、十六进制、斐波那契</td></tr>
+        <tr><td><b>2024</b></td><td>Linux pwd、找最大值复杂度、栈溢出、颁奖排列、队列 FIFO、递推计算、欧拉图、二分前提、扩欧逆元、哈希最坏复杂度、完全二叉树、环计数、数字和、01 串交换、删边方案</td></tr>
+        <tr><td><b>2025</b></td><td>蓝球不相邻、KMP next、线段树查询、Trie 结点数、DAG 拓扑、哈希线性探查、最小生成树、BST 后序推前序、0/1 背包、LCA、主定理、最小堆、容斥、DP 重叠子问题、贪心调度</td></tr>
+      </table>
+      <div class="warn" style="border-left-color:var(--accent)">趋势：2025 选择题全面"数据结构化+算法化"（线段树、Trie、KMP、堆、背包、LCA 全上），纯常识题退出——<b>把背计算机史的时间还给算法手算</b></div>
+    </div>
+  </section>
+
+  <!-- ================= 学习路线（csp.wiki 目标分层） ================= -->
+  <section id="route" class="reveal" style="margin-top:32px">
+    <div class="card">
+      <h2>目标分层学习路线<span class="sub">初赛只是第一关 · 按 csp.wiki 目标分数体系规划（复赛 400 分制）</span></h2>
+      <table class="tbl" style="margin-bottom:16px">
+        <tr><th>奖项线（复赛）</th><th>顶尖强省（浙/苏/沪/京）</th><th>竞争较弱省份</th></tr>
+        <tr><td><b>省一</b></td><td>≈ 220 分甚至更高</td><td>≈ 150 分</td></tr>
+        <tr><td><b>省二</b></td><td>≈ 120 分</td><td>≈ 60 分</td></tr>
+        <tr><td><b>省三</b></td><td>≈ 60 分</td><td>多数省份不设</td></tr>
+      </table>
+      <div class="cards" style="margin:16px 0 0">
+        <div class="card phase">
+          <div class="t">目标 100 分</div>
+          <h3>🚪 进门：稳做 T1</h3>
+          <ul>
+            <li>精通 C++ 语法与 STL（vector/map/set/algorithm）</li>
+            <li>普及组基础熟练：基础背包/线性 DP、DFS/BFS、gcd/筛法/快速幂</li>
+            <li>快速定位语法错误、越界、死循环的调试能力</li>
+          </ul>
+        </div>
+        <div class="card phase p2">
+          <div class="t">目标 200 分</div>
+          <h3>📈 稳一抢二</h3>
+          <ul>
+            <li>中级数据结构：堆、并查集、树状数组、基础线段树</li>
+            <li>搜索优化（剪枝/迭代加深/双向 BFS）、状压/树形/数位 DP</li>
+            <li>图论进阶：最短路全家桶、拓扑、SCC、LCA；乘法逆元/同余</li>
+          </ul>
+        </div>
+        <div class="card phase p3">
+          <div class="t">目标 300+ 分</div>
+          <h3>🏆 稳省一 / 冲省队</h3>
+          <ul>
+            <li>高级数据结构：扫描线、平衡树、可持久化、分块</li>
+            <li>DP 优化（单调队列/四边形不等式）、网络流、KMP/哈希/Trie/Manacher、莫比乌斯反演</li>
+            <li>复杂建模 + 常数优化 + 赛场策略与心态</li>
+          </ul>
+        </div>
+        <div class="card phase p4">
+          <div class="t">目标 AK</div>
+          <h3>⚡ 追求极致</h3>
+          <ul>
+            <li>知识体系无短板，思维 + 实现近乎完美</li>
+            <li>500+ 高质量题量，重思维难度而非数量</li>
+            <li>重心转向省选 / NOI 级别内容</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0">
+        对初赛的启示：目标 100–150 分档的考生，初赛备考重心就是本文 T0/T1 清单 + 阅读程序手算；
+        冲省一以上的，初赛的完善程序（最短路/DP 模板）本身就是复赛代码能力的预热。完整路线见
+        <a href="https://csp.wiki/docs/CSP-S" target="_blank" rel="noopener">csp.wiki · CSP-S 指南</a>（NOIP 与 CSP-S 知识点相同，高中生凭 CSP-S 成绩获取 NOIP 参赛资格）。
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 学习方法论 ================= -->
+  <section id="method" class="card reveal" style="margin-top:32px">
+    <h2>学习方法论<span class="sub">来自 csp.wiki · 避免刷了等于没刷</span></h2>
+    <div class="rule"><div class="n">1</div><p><b>选题策略：紧跟考纲趋势。</b>优先突破近年高频（DP、图论、线段树、字符串、数学）；按目标分数选难度，别长期停在舒适区或被难题打击；薄弱考点一周专项突破（如一周只攻状压 DP）。</p></div>
+    <div class="rule"><div class="n">2</div><p><b>错题深度归因。</b>不只记"选错了"——是知识没学过？概念混淆？手算失误？时间不够？研究优秀题解的不同思路，对比自己的推理路径，错题本定期重做。</p></div>
+    <div class="rule"><div class="n">3</div><p><b>避免伪勤奋。</b>精做一道需要深入思考的题，胜过刷十道重复题。独立攻坚 30–60 分钟无解再看题解；看懂后<b>合上答案独立复现</b>，并问自己"为什么我没想到"。</p></div>
+    <div class="rule"><div class="n">4</div><p><b>模拟实战 + 讲题训练。</b>每周一次严格限时模考（无资料无提示）；赛后复盘时间分配与卡点；尝试把难题的完整思路<b>讲给别人听</b>——讲不通顺的地方就是薄弱点。</p></div>
+  </section>
+
+  <!-- ================= 冲刺计划 ================= -->
+  <section id="plan" class="reveal" style="margin-top:32px">
+    <div class="cards">
+      <div class="card phase">
+        <div class="t">第 1 轮 · D1–D4</div>
+        <h3>🎯 地毯式刷真题</h3>
+        <ul>
+          <li>每天 1 套（2021→2024），限时 100 分钟</li>
+          <li>逐题归因：没学过 / 没认出 / 手算失误</li>
+          <li>分类记入错题本</li>
+        </ul>
+      </div>
+      <div class="card phase p2">
+        <div class="t">第 2 轮 · D5–D9</div>
+        <h3>🔧 按清单专项补漏</h3>
+        <ul>
+          <li>组合半天 · 复杂度半天 · 图论一天</li>
+          <li>树/堆/哈希一天 · 最短路完善程序一天</li>
+          <li>在线刷题站按 NOI 大纲知识树逐考点突破</li>
+        </ul>
+      </div>
+      <div class="card phase p3">
+        <div class="t">第 3 轮 · D10–D12</div>
+        <h3>⏱ 全真模考</h3>
+        <ul>
+          <li>2025 真题 + 1 套模拟，严格 120 分钟</li>
+          <li>选择 ≤35' / 阅读 50' / 完善 30' / 检查 5'</li>
+          <li>训练涂卡节奏</li>
+        </ul>
+      </div>
+      <div class="card phase p4">
+        <div class="t">收尾 · D13</div>
+        <h3>🌙 只看旧东西</h3>
+        <ul>
+          <li>错题本 + T0 清单 + 常识背诵页</li>
+          <li>不学新知识，早睡养状态</li>
+          <li>每日雷打不动：手算 2 段代码</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 考场守则 ================= -->
+  <section id="battle" class="card reveal" style="margin-top:8px">
+    <h2>考场 120 分钟作战守则</h2>
+    <div class="rule"><div class="n">1</div><p><b>选择 35 分钟封顶。</b>组合/图论题画图，不确定就标记跳过，最后用排除法收割。T0 考点（组合/图论/复杂度）确保全对。</p></div>
+    <div class="rule"><div class="n">2</div><p><b>阅读程序先做判断题。</b>每题 1.5 分多为送分；"删除某行"类先想这行影响正确性还是只影响效率。</p></div>
+    <div class="rule"><div class="n">3</div><p><b>完善程序先读功能描述。</b>最短路/DP 先在脑中默写模板再对照代码；在剩余 2 个选项间比对边界（差 1、初始化、&lt;/&lt;=）。</p></div>
+    <div class="rule"><div class="n">4</div><p><b>草稿纸是第二大脑。</b>所有递归、循环、堆操作列表格追踪，禁止心算——绝大多数"看错了"的丢分都因为跳过这一步。</p></div>
+    <div class="rule"><div class="n">5</div><p><b>程序 3 战略性取舍。</b>最难的阅读题性价比低，卡壳超 8 分钟就跳，保住前 94 分的盘。</p></div>
+    <div class="rule"><div class="n">6</div><p><b>涂卡留 5 分钟。</b>判断题 √/× 规范填涂，选择题核对题号。</p></div>
+  </section>
+
+  <!-- ================= 两轮认证对比 ================= -->
+  <section id="rounds" class="reveal" style="margin-top:32px">
+    <div class="card">
+      <h2>两轮认证对比<span class="sub">第一轮笔试与第二轮上机，考的是两种不同的能力</span></h2>
+      <table class="tbl">
+        <tr><th>维度</th><th>第一轮（笔试）</th><th>第二轮（上机）</th></tr>
+        <tr><td><b>形式</b></td><td>集中笔试（部分区域机试），纸质答题卡</td><td>现场集中上机，NOI Linux / Windows 环境</td></tr>
+        <tr><td><b>时间</b></td><td>9 月第三个周六 14:30–16:30，共 <b>120 分钟</b></td><td>10 月下旬周六 14:30–18:30，共 <b>4 小时</b></td></tr>
+        <tr><td><b>题型</b></td><td>15 道单选（30 分）+ 3 道阅读程序（40 分）+ 2 道完善程序（30 分）</td><td><b>4 道编程题</b>，每题 100 分，共 400 分</td></tr>
+        <tr><td><b>评分</b></td><td>按答案对错给分，一锤定音</td><td>每题 10–25 个测试点<b>部分给分</b>，暴力也能拿分</td></tr>
+        <tr><td><b>门槛</b></td><td>人人可报，是<b>晋级第二轮的门票</b>（须达各省分数线）</td><td>须第一轮达线方可参加，获奖只看第二轮成绩</td></tr>
+        <tr><td><b>核心能力</b></td><td><b>知其然</b>：理论判断、细节辨析、人肉追踪代码</td><td><b>写得出</b>：算法设计、代码实现、调试与骗分策略</td></tr>
+      </table>
+
+      <div class="cards" style="margin-bottom:0">
+        <div class="card" style="margin:0">
+          <h2>第一轮要掌握的<span class="sub">以"识别与判断"为标准</span></h2>
+          <p style="margin:0 0 8px"><span class="tag t0">T0</span> <b>组合数学</b>（排列组合、不相邻、隔板法）、<b>图论理论</b>（遍历、连通性、树与生成树计数）、<b>复杂度计算</b></p>
+          <p style="margin:0 0 8px"><span class="tag t1">T1</span> <b>进制与编码</b>（原码/反码/补码、ASCII、进制转换）、<b>位运算与逻辑运算优先级</b>、<b>数据结构性质</b>（栈/队列/链表/二叉树/哈夫曼）、C++ 语法细节、计算机史与硬件常识</p>
+          <p style="margin:0"><span class="tag t2">独有</span> <b>人肉模拟程序运行</b>——在草稿纸上列表格追踪变量变化，这是阅读程序题 40 分的全部基本功，机器永远代替不了你</p>
+        </div>
+        <div class="card" style="margin:0">
+          <h2>第二轮要掌握的<span class="sub">以"独立写出完整程序"为标准</span></h2>
+          <p style="margin:0 0 8px"><span class="tag t0">T0</span> <b>基础算法实现</b>：枚举、模拟、贪心、二分、DFS/BFS 与剪枝、前缀和与差分</p>
+          <p style="margin:0 0 8px"><span class="tag t1">T1</span> <b>动态规划</b>（背包、区间、线性、树形）、<b>图论算法</b>（最短路 Dijkstra/SPFA、最小生成树、拓扑排序）、<b>数据结构编码</b>（STL 熟练、并查集、树状数组、线段树）、简单数论</p>
+          <p style="margin:0"><span class="tag t2">独有</span> <b>工程能力</b>：文件 IO（freopen）、对拍造数据、部分分策略（先写暴力再优化）、卡常与防爆内存——这些在笔试里完全不考</p>
+        </div>
+      </div>
+      <p class="muted" style="font-size:13px;margin:14px 0 0">
+        策略提示：本页（真题 PDF / 在线刷题 / 考点清单 / 阅读与完善程序训练）全部面向<b>第一轮</b>。两轮能力清单交集不大——第一轮高分不等于第二轮稳拿奖；反之第二轮选手也常因理论细节在第一轮翻车。建议第一轮通过分数线后，立即转入洛谷等平台按第二轮算法清单刷题。
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 资源导航 ================= -->
+  <section id="sites" class="card reveal" style="margin-top:24px">
+    <h2>资源导航<span class="sub">本页功能之外的延伸训练场 · 点击直达</span></h2>
+    <div class="sitegrid">
+      <a class="site-card" href="https://www.cspfirstround.com/" target="_blank" rel="noopener">
+        <span class="sc-head"><span class="sc-name">CSP 第一轮</span><span class="tag accent">在线刷题</span></span>
+        <span class="sc-url">cspfirstround.com</span>
+        <p>海量初赛真题在线刷题，配三段式深度题解（本页题解范式即源于此）。错题本 + 学习统计，适合本页 30 题刷完后的进阶训练。</p>
+      </a>
+      <a class="site-card" href="https://csp.wiki/docs/CSP-S" target="_blank" rel="noopener">
+        <span class="sc-head"><span class="sc-name">CSP Wiki</span><span class="tag judge">知识体系</span></span>
+        <span class="sc-url">csp.wiki</span>
+        <p>按 100 / 200 / 300+ / AK 目标分层的系统学习路线与知识点讲解（本页「学习路线」「方法论」板块的参考来源），适合查漏补缺。</p>
+      </a>
+      <a class="site-card" href="https://www.csppass.com/" target="_blank" rel="noopener">
+        <span class="sc-head"><span class="sc-name">CSP Pass</span><span class="tag t2">冲刺通关</span></span>
+        <span class="sc-url">csppass.com</span>
+        <p>面向 CSP-S 初赛的冲刺通关站点，本页的视觉设计即仿照其风格。适合考前最后阶段快速过考点。</p>
+      </a>
+      <a class="site-card" href="https://www.cnblogs.com/fusiwei/p/11559283.html" target="_blank" rel="noopener">
+        <span class="sc-head"><span class="sc-name">史上最全 CSP-J/S 第一轮知识点</span><span class="tag t0">知识点大全</span></span>
+        <span class="sc-url">cnblogs.com/fusiwei</span>
+        <p>阅读量 5 万+ 的经典博客：信息学史、进制编码、位运算与逻辑运算优先级、图论与数据结构理论、时空复杂度，附题型分布表，适合系统过一遍第一轮理论盲区。</p>
+      </a>
+    </div>
+    <div class="site-more chips">
+      <a class="chip" href="https://www.luogu.com.cn/" target="_blank" rel="noopener">洛谷 <b>题库</b></a>
+      <a class="chip" href="https://hkoi.org/zh/cspjs-past-problems" target="_blank" rel="noopener">HKOI <b>历届试题</b></a>
+      <a class="chip" href="https://www.noi.cn/" target="_blank" rel="noopener">NOI <b>官网</b></a>
+      <a class="chip" href="https://github.com/mingyush/csp" target="_blank" rel="noopener">mingyush/csp <b>真题仓库</b></a>
+      <a class="chip" href="https://github.com/winterant/oi" target="_blank" rel="noopener">winterant/oi <b>资料仓库</b></a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>CSP-S 第一轮备考全攻略 · 真题版权归 CCF 所有，社区整理版仅供备考学习</p>
+  <p>考点统计基于 2021–2025 真题逐题梳理 · 刷题站与学习路线参考 cspfirstround.com / csppass.com / csp.wiki · 页面设计仿 csppass.com</p>
+</footer>
+
+<script>
+/* ============ 主题三态切换：跟随系统 → 浅 → 深 → 循环 ============ */
+(function () {
+  var btn = document.getElementById('themebtn');
+  var sun = btn.querySelector('.ic-sun');
+  var moon = btn.querySelector('.ic-moon');
+  var root = document.documentElement;
+
+  function apply(mode) {
+    if (mode === 'light') { root.setAttribute('data-theme', 'light'); }
+    else if (mode === 'dark') { root.setAttribute('data-theme', 'dark'); }
+    else { root.removeAttribute('data-theme'); }
+    var dark = mode === 'dark' ||
+      (mode !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    sun.hidden = dark;
+    moon.hidden = !dark;
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+  apply(saved);
+
+  btn.addEventListener('click', function () {
+    var order = [null, 'light', 'dark'];
+    var cur = null;
+    try { cur = localStorage.getItem('theme'); } catch (e) {}
+    var next = order[(order.indexOf(cur) + 1) % order.length];
+    try {
+      if (next) localStorage.setItem('theme', next);
+      else localStorage.removeItem('theme');
+    } catch (e) {}
+    apply(next);
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+    var cur = null;
+    try { cur = localStorage.getItem('theme'); } catch (e) {}
+    if (!cur) apply(null);
+  });
+
+  /* ============ 倒计时（CSP-S 2026 第一轮：2026-09-19 14:30） ============ */
+  try {
+    var exam = new Date('2026-09-19T14:30:00+08:00');
+    var days = Math.ceil((exam - Date.now()) / 86400000);
+    var el = document.getElementById('days');
+    if (el) el.textContent = days > 0 ? days : '开考';
+  } catch (e) {}
+})();
+</script>
+
+
+<script>
+/* ============================================================
+   在线刷题引擎：题库（2024/2025 真题 30 题）+ 判分 + 三段式题解
+   + 错题本 + 学习统计 + 限时模考。纯本地，localStorage 持久化。
+   ============================================================ */
+(function () {
+  var Q = [
+    /* ---- 2025 ---- */
+    {id:'25-1', y:2025, n:1, cat:'T0', topic:'组合数学·不相邻排列',
+     stem:'5 个红色球和 5 个蓝色球（除颜色外完全相同）排成一排，要求任意两个蓝色球都不能相邻，有多少种不同的排列方法？',
+     opts:['25','30','6','120'], ans:2,
+     k:'组合数学 → 不相邻排列 → 插空法（T0 考点，五年 11 题年年必考）',
+     s:'先排 5 个红球：完全相同，仅 1 种。5 个红球产生 6 个空位（含两端），从中选 5 个放蓝球：C(6,5) = 6。',
+     w:'红球完全相同，不要乘 A(5,5)；「不相邻」三个字就是插空法的信号；n 个元素产生 n+1 个空位，不是 n−1 个。'},
+    {id:'25-2', y:2025, n:2, cat:'T2', topic:'字符串·KMP',
+     stem:'在 KMP 算法中，对于模式串 P="abacaba"，其 next 数组（next[i] 定义为 P[0..i] 的最长公共前后缀长度，下标从 0 开始）的值是？',
+     opts:['{0, 0, 1, 0, 1, 2, 3}','{0, 1, 2, 3, 4, 5, 6}','{0, 0, 1, 1, 2, 2, 3}','{0, 0, 0, 0, 1, 2, 3}'], ans:0,
+     k:'字符串 → KMP → next 数组手算（最长公共前后缀）',
+     s:'逐位计算：a→0；ab→0；aba→1（前缀 a = 后缀 a）；abac→0；abaca→1；abacab→2（ab）；abacaba→3（aba）。',
+     w:'next[i] 是整段 P[0..i] 的前后缀匹配，不是只看最后两个字符；枚举时从长到短验证，找不到才是 0。'},
+    {id:'25-3', y:2025, n:3, cat:'T1', topic:'数据结构·线段树',
+     stem:'对一个大小为 16（下标 0–15）的数组构建满线段树，查询区间 [3,11] 时，最少需要访问多少个树结点（包括路径上的父结点和完全包含在查询区间内的结点）？',
+     opts:['7','8','9','10'], ans:1,
+     k:'数据结构 → 线段树区间查询过程',
+     s:'[3,11] 递归分解为 [3,3]、[4,7]、[8,11] 三段；沿路径经过的父结点加上三个完全覆盖结点，合计 8 个。',
+     w:'计数必须包含「路过但不完全包含」的父结点——题干括号里特意强调了这个坑。'},
+    {id:'25-4', y:2025, n:4, cat:'T1', topic:'数据结构·Trie',
+     stem:'将字符串 "cat", "car", "cart", "case", "dog", "do" 插入空的 Trie 树。构建完成（含根节点）共有多少个结点？',
+     opts:['8','9','10','11'], ans:3,
+     k:'数据结构 → Trie（前缀树）构造与前缀共享',
+     s:'根 1 + cat(c,a,t)=3 + car 新增 r=1 + cart 新增 t=1 + case 共享 ca 新增 s,e=2 + dog(d,o,g)=3 + do 共享 do=0，共 11。',
+     w:'case 与 cat/car 共享前缀 ca，别当成全新分支；根节点必须计入；建议按字典序画图。'},
+    {id:'25-5', y:2025, n:5, cat:'T0', topic:'图论·拓扑排序',
+     stem:'对于一个包含 n 个结点、m 条边的有向无环图（DAG），其拓扑排序的结果有多少种可能？',
+     opts:['只有 1 种','最多 n 种','等于 n−m 种','以上都不对'], ans:3,
+     k:'图论 → 拓扑排序方案数',
+     s:'拓扑序数量完全取决于图结构：链状 DAG 仅 1 种；无边 DAG 有 n! 种；均不符合前三个选项 → 选「以上都不对」。',
+     w:'不要以为上限是 n——无边的 DAG 拓扑序是全排列 n! 种。'},
+    {id:'25-6', y:2025, n:6, cat:'T1', topic:'数据结构·哈希',
+     stem:'大小为 13 的哈希表，闭散列法线性探查解决冲突，哈希函数 H(key)=key mod 13。依次插入 18, 26, 35, 9, 68, 74，74 最终放在哪个索引？',
+     opts:['5','7','9','11'], ans:3,
+     k:'数据结构 → 哈希 → 闭散列线性探查手算（近 3 年连考）',
+     s:'18→5；26→0；35→9；9→9 冲突探查到 10；68→3；74→9 冲突→10 已占→11。',
+     w:'每插一个都要重新算；探查到表尾要回绕到 0；别忘了 9 已经把位置 10 占了，74 得再 +1。'},
+    {id:'25-7', y:2025, n:7, cat:'T0', topic:'图论·最小生成树',
+     stem:'8 个顶点的完全图（编号 1–8），边权等于两顶点编号之差的绝对值。该图的最小生成树总权重是多少？',
+     opts:['7','8','9','10'], ans:0,
+     k:'图论 → 最小生成树（Kruskal 贪心思想）',
+     s:'权为 1 的边连接相邻编号，用 7 条权 1 的边连成链 1-2-3-…-8 即可连通，总权 7；生成树恰需 n−1=7 条边，已是下界。',
+     w:'完全图边虽多，MST 只用 n−1 条边；总权下界 = 至少 7 条边 × 最小权 1 = 7。'},
+    {id:'25-8', y:2025, n:8, cat:'T1', topic:'数据结构·BST 遍历',
+     stem:'一棵二叉搜索树的后序遍历序列是 2, 5, 4, 8, 12, 10, 6，其前序遍历是？',
+     opts:['6, 4, 2, 5, 10, 8, 12','6, 4, 5, 2, 10, 12, 8','2, 4, 5, 6, 8, 10, 12','12, 8, 10, 5, 2, 4, 6'], ans:0,
+     k:'数据结构 → BST 遍历序列互推',
+     s:'后序末位 6 为根；小于 6 的 {2,5,4} 划入左子树，{8,12,10} 划入右子树；递归重建后前序为 6,4,2,5,10,8,12。',
+     w:'BST「左小右大」是划分左右子树的唯一依据；后序遍历最后一个元素是根。'},
+    {id:'25-9', y:2025, n:9, cat:'T2', topic:'动态规划·0/1 背包',
+     stem:'0-1 背包问题，容量 20。5 个物品重量为 7,5,4,3,6，价值为 15,12,9,7,13。能获得的最大总价值是多少？',
+     opts:['43','41','45','44'], ans:3,
+     k:'动态规划 → 0/1 背包小规模手算',
+     s:'枚举四件组合：物品 1+3+4+5 重量 7+4+3+6=20 恰好装满，价值 15+9+7+13=44，为最大。',
+     w:'别漏「恰好装满」的组合；三件组合最大只有 40（1+2+5）；规模小时穷举比 DP 转移表更快。'},
+    {id:'25-10', y:2025, n:10, cat:'T1', topic:'数据结构·LCA',
+     stem:'在一棵以结点 1 为根的树中，LCA(12, 18) = 4。那么下列哪个 LCA 组合是不可能出现的？',
+     opts:['LCA(12, 4) = 4','LCA(18, 4) = 4','LCA(12, 18, 4) = 4','LCA(12, 1) = 4'], ans:3,
+     k:'数据结构 → 树 → 最近公共祖先性质',
+     s:'1 是根：12 与根的 LCA 必为根本身，即 LCA(12,1)=1，不可能等于 4；其余三种在 4 为 12、18 祖先时均成立。',
+     w:'任何结点与根的 LCA 恒为根——这是 LCA 性质题的固定套路。'},
+    {id:'25-11', y:2025, n:11, cat:'T0', topic:'算法·主定理',
+     stem:'递归关系 T(n) = 2T(n/2) + O(n²) 描述某分治算法，其时间复杂度是？',
+     opts:['O(n)','O(n log n)','O(n²)','O(n² log n)'], ans:2,
+     k:'复杂度分析 → 主定理（五年 9 题的 T0 考点）',
+     s:'主定理：n^{log₂2} = n 与 f(n) = n² 比较，f 占优 → T(n) = O(n²)。逐层求和也可验证：n²(1 + 1/2 + 1/4 + …) ≈ 2n²。',
+     w:'别看到 2T(n/2) 就条件反射选 O(n log n)——那是不带 O(n²) 项时的答案。'},
+    {id:'25-12', y:2025, n:12, cat:'T1', topic:'数据结构·堆',
+     stem:'初始为空的最小堆依次插入 20, 12, 15, 8, 10, 5，然后连续执行两次 delete-min。此时堆顶元素是？',
+     opts:['10','12','15','20'], ans:0,
+     k:'数据结构 → 最小堆插入/删除手算（2025 高发）',
+     s:'全部插入后堆内为 {5,8,10,12,15,20}；第一次 delete-min 删 5，堆顶变 8；第二次删 8，堆顶变 10。',
+     w:'删除操作是把末尾元素放到堆顶再下滤（sift down）；堆操作必须画图逐步追踪，禁止心算。'},
+    {id:'25-13', y:2025, n:13, cat:'T0', topic:'数学·容斥原理',
+     stem:'1 到 1000 之间，不能被 2、3、5 中任意一个数整除的整数有多少个？',
+     opts:['266','267','333','734'], ans:0,
+     k:'数学 → 容斥原理（组合数学家族的固定成员）',
+     s:'1000 − (500+333+200) + (166+100+66) − 33 = 266。减去各倍数、加回两两公倍数、再减去 2·3·5 的公倍数。',
+     w:'⌊1000/3⌋ = 333 要向下取整；容斥的「加回成对、减去三重」符号交替，漏一项全错。'},
+    {id:'25-14', y:2025, n:14, cat:'T2', topic:'动态规划·重叠子问题',
+     stem:'朴素递归计算斐波那契数列是指数级，动态规划（或迭代）是线性级。造成巨大差异的根本原因是？',
+     opts:['递归函数调用栈开销过大','操作系统对递归深度有限制','朴素递归中存在大量重叠子问题未被重复利用','动态规划使用了更少的数据存储空间'], ans:2,
+     k:'动态规划 → 重叠子问题（DP 有效的本质）',
+     s:'朴素递归对同一子问题（如 F(5)）重复计算指数次；DP 保证每个子问题只求解一次并缓存，故降为线性。',
+     w:'不是栈开销也不是存储空间的问题——根本原因是「重复计算」。'},
+    {id:'25-15', y:2025, n:15, cat:'T2', topic:'算法·贪心调度',
+     stem:'5 个不可抢占任务在一台机器上执行，处理时长 3,4,2,5,1，截止时刻 5,10,3,15,11。超时惩罚等于处理时长。为最小化总惩罚，应优先执行？',
+     opts:['处理时间最短的任务 A5','截止时间最早的任务 A3','处理时间最长的任务 A4','任意一个任务都可以'], ans:1,
+     k:'算法 → 贪心 → 带截止时间的调度（EDF 策略）',
+     s:'经典结论：最小化超时任务数/惩罚的贪心策略是 EDF（Earliest Deadline First），优先做截止时间最早的 A3。',
+     w:'SPT（最短处理时间优先）只优化平均完成时间，不适用于带截止时间的惩罚模型。'},
+    /* ---- 2024 ---- */
+    {id:'24-1', y:2024, n:1, cat:'T1', topic:'常识·Linux',
+     stem:'在 Linux 系统中，如果想显示当前工作目录的路径，应该使用哪个命令？',
+     opts:['pwd','cd','ls','echo'], ans:0,
+     k:'计算机常识 → Linux 命令（2021–2024 连续 4 年第 1 题：ls→cd→mkdir→pwd）',
+     s:'pwd = print working directory，打印当前工作目录。',
+     w:'cd 是切换目录、ls 是列出文件、echo 是输出文本；这 2 分是「背了就有」的送分题。'},
+    {id:'24-2', y:2024, n:2, cat:'T0', topic:'复杂度·顺序查找',
+     stem:'长度为 n 的无序整数数组，元素互不相同。找到最大元素的时间复杂度是？',
+     opts:['O(n)','O(log n)','O(n log n)','O(1)'], ans:0,
+     k:'复杂度分析 → 顺序查找（T0，年年 1–2 题）',
+     s:'无序数组不能二分，只能逐个比较，共 n−1 次 → O(n)。',
+     w:'「互不相同」不影响量级；无序是关键——有序才能 O(1)（末尾元素）。'},
+    {id:'24-3', y:2024, n:3, cat:'T1', topic:'常识·栈溢出',
+     stem:'以下哪个 C++ 函数调用会造成溢出？',
+     opts:['int foo(){ return 0; }','int bar(){ int x=1; return x; }','void baz(){ int a[1000]; baz(); }','void qux(){ return; }'], ans:2,
+     k:'计算机常识 → 递归与栈溢出成因',
+     s:'baz 无递归出口，每次调用压入栈帧，栈空间耗尽即 stack overflow。',
+     w:'局部数组 1000 个 int 很小不是主因；「无出口的递归」才是。'},
+    {id:'24-4', y:2024, n:4, cat:'T0', topic:'组合·排列',
+     stem:'10 名选手参加比赛，前三名分获金、银、铜牌。不允许并列、每人只能得一枚奖牌，不同的颁奖方式有多少种？',
+     opts:['120','720','504','1000'], ans:1,
+     k:'组合数学 → 排列 A(n,m)（金银铜有序）',
+     s:'三名次有区别 → 排列：A(10,3) = 10×9×8 = 720。',
+     w:'C(10,3)=120 是陷阱——名次不同就必须用排列；先判「有序/无序」再选公式。'},
+    {id:'24-5', y:2024, n:5, cat:'T2', topic:'数据结构·队列',
+     stem:'下面哪个数据结构最适合实现先进先出（FIFO）的功能？',
+     opts:['栈','队列','线性表','二叉搜索树'], ans:1,
+     k:'数据结构 → 队列性质',
+     s:'队列：先进先出 FIFO；栈：后进先出 LIFO。',
+     w:'线性表是逻辑结构统称（包含栈和队列），不特指 FIFO。'},
+    {id:'24-6', y:2024, n:6, cat:'T0', topic:'递推·逐项计算',
+     stem:'已知 f(1)=1，且对 n≥2 有 f(n)=f(n−1)+f(⌊n/2⌋)，则 f(4) 的值为？',
+     opts:['4','5','6','7'], ans:1,
+     k:'递推 → 逐项列表计算（复杂度家族常客）',
+     s:'f(2)=f(1)+f(1)=2；f(3)=f(2)+f(1)=3；f(4)=f(3)+f(2)=5。',
+     w:'⌊n/2⌋ 是向下取整：⌊3/2⌋=1；列表逐项写出来，别跳步。'},
+    {id:'24-7', y:2024, n:7, cat:'T0', topic:'图论·欧拉图',
+     stem:'n 个顶点的无向图是欧拉图。以下关于该图的描述中，哪一项不一定正确？',
+     opts:['所有顶点的度数均为偶数','该图连通','该图存在一个欧拉回路','该图的边数是奇数'], ans:3,
+     k:'图论 → 欧拉图判定（经典概念题）',
+     s:'欧拉图 ⇔ 连通 + 所有顶点度数为偶数（存在欧拉回路）。边数的奇偶没有任何约束。',
+     w:'「边数是奇数」不是必要条件——三角形（3 条边）和正方形（4 条边）都可以是欧拉图。'},
+    {id:'24-8', y:2024, n:8, cat:'T2', topic:'算法·二分',
+     stem:'对数组进行二分查找的过程中，以下哪个条件必须满足？',
+     opts:['数组必须是有序的','数组必须是无序的','数组长度必须是 2 的幂','数组中的元素必须为整数'], ans:0,
+     k:'算法 → 二分查找的前提条件',
+     s:'二分依赖有序性：每次与中点比较后才能确定舍弃哪一半。',
+     w:'长度是否 2 的幂只影响边界实现，不是前提；元素也可以是小数。'},
+    {id:'24-9', y:2024, n:9, cat:'T1', topic:'数论·逆元',
+     stem:'计算自然数 n 在数 m 意义下的乘法逆元，下列哪种算法最为适合？',
+     opts:['使用暴力法依次尝试','使用扩展欧几里得算法','使用快速幂法','使用线性筛法'], ans:1,
+     k:'数论 → 逆元求法（隔年稳定考点）',
+     s:'ax ≡ 1 (mod m) 即 ax + my = 1，用扩展欧几里得求解；m 为质数时也可用费马小定理 a^(m−2)，即快速幂法。',
+     w:'快速幂法有前提（m 为质数）；通解选扩欧，别被「快速幂」的高大上迷惑。'},
+    {id:'24-10', y:2024, n:10, cat:'T1', topic:'数据结构·哈希',
+     stem:'哈希表有 n 个键值对，装载因子 α（0 < α ≤ 1）。使用开放地址法解决冲突时，最坏情况下查找一个元素的时间复杂度为？',
+     opts:['O(1)','O(log n)','O(1/(1−α))','O(n)'], ans:3,
+     k:'数据结构 → 哈希冲突与复杂度',
+     s:'最坏情况所有键哈希到同一位置，探查链长度 n → O(n)。',
+     w:'O(1/(1−α)) 是平均期望界，题目问的是「最坏」——审题是这类题的生死线。'},
+    {id:'24-11', y:2024, n:11, cat:'T1', topic:'树·完全二叉树',
+     stem:'一棵 h 层的完全二叉树，最多包含多少个结点？',
+     opts:['2^h − 1','2^(h+1) − 1','2^h','2^(h+1)'], ans:0,
+     k:'数据结构 → 完全二叉树性质（年年考树）',
+     s:'第 k 层最多 2^(k−1) 个，前 h 层求和 = 2^h − 1，满二叉树时取到最大。',
+     w:'h 从 1 开始计数：1 层 1 个、2 层 3 个、3 层 7 个，规律即 2^h − 1。'},
+    {id:'24-12', y:2024, n:12, cat:'T0', topic:'组合·环计数',
+     stem:'10 个顶点的完全图（任意两点间都有边），有多少个长度为 4 的环？',
+     opts:['120','210','630','5040'], ans:2,
+     k:'组合数学 → 环计数（圆排列的变体）',
+     s:'选 4 个点：C(10,4)=210；4 个点的完全图上环的个数 = 4!/(2×4) = 3；合计 210×3 = 630。',
+     w:'4 个点能构成的环是 3 个（不是 1 个也不是 6 个）；除以 2 是因为正反两个方向算同一个环。'},
+    {id:'24-13', y:2024, n:13, cat:'T2', topic:'数学·数字和',
+     stem:'定义 f(n) 为 n 的各位数字之和。使 f(f(x)) = 10 的最小自然数 x 是多少？',
+     opts:['29','199','299','399'], ans:1,
+     k:'数学 → 数字和分析（构造题）',
+     s:'需要 f(x) 的数字和为 10，最小取 f(x)=19；两位数的 f(f(x)) 最多到 9，不够；f(x)=19 的最小 x 是 199。',
+     w:'先分析内层 f(x) 的可能值域再反推 x；199 → 1+9+9=19 → 1+9=10。'},
+    {id:'24-14', y:2024, n:14, cat:'T0', topic:'组合·交换次数',
+     stem:'长度为 n 的 01 字符串含 k 个 1，每次可交换相邻两个字符。最坏情况下将这 k 个 1 全部移到字符串最右边需要多少次交换？',
+     opts:['k','k(k−1)/2','(n−k) × k','(2n−k−1) × k / 2'], ans:2,
+     k:'组合/排序 → 相邻交换 = 逆序对计数',
+     s:'最坏是 k 个 1 全在左端：每个 1 都要越过右侧全部 n−k 个 0，共 (n−k)×k 次交换。',
+     w:'相邻交换次数 = 逆序对数；k(k−1)/2 只统计 1 之间的对——它们相同，根本不必互换。'},
+    {id:'24-15', y:2024, n:15, cat:'T0', topic:'图论·删边方案',
+     stem:'一张含 7 个顶点的有向图，要删除其中一些边使节点 1 到节点 7 没有可行路径，且删除的边数最少。共有多少种可行的删边集合？',
+     opts:['1','2','3','4'], ans:3,
+     k:'图论 → 连通性 → 割边组合枚举',
+     s:'画图标出 1→7 的全部路径，逐一枚举 2 条边的组合并验证断路，共 4 种可行方案。',
+     w:'题目数的是「集合个数」不是「边数」；必须枚举验证，不能只看最短路径。'}
+  ];
+
+  var LS_WRONG = 'csps_wrong_v1', LS_STATS = 'csps_stats_v1';
+  function lsGet(k, d) { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (e) { return d; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+
+  var body = document.getElementById('quizBody');
+  var statsBox = document.getElementById('quizStats');
+  var gridWrap = document.getElementById('quizGridWrap');
+  var gridEl = document.getElementById('quizGrid');
+  var scoreEl = document.getElementById('quizScore');
+
+  var st = { mode: 'year', val: '2025', list: [], pos: 0, answers: {}, judged: {}, mock: false, review: false, timer: null, deadline: 0 };
+
+  function qById(id) { for (var i = 0; i < Q.length; i++) if (Q[i].id === id) return Q[i]; return null; }
+
+  function buildList() {
+    var l = [];
+    if (st.mode === 'year') { for (var i = 0; i < Q.length; i++) if (String(Q[i].y) === st.val) l.push(Q[i]); }
+    else if (st.mode === 'topic') { for (var j = 0; j < Q.length; j++) if (Q[j].cat === st.val) l.push(Q[j]); }
+    else if (st.mode === 'wrong') {
+      var w = lsGet(LS_WRONG, []);
+      for (var k = 0; k < w.length; k++) { var q = qById(w[k]); if (q) l.push(q); }
+    } else if (st.mode === 'mock') {
+      var pool = Q.slice();
+      for (var s = pool.length - 1; s > 0; s--) { var r = Math.floor(Math.random() * (s + 1)); var t = pool[s]; pool[s] = pool[r]; pool[r] = t; }
+      l = pool.slice(0, 15);
+    }
+    return l;
+  }
+
+  function start(mode, val) {
+    if (st.timer) { clearInterval(st.timer); st.timer = null; }
+    st.mode = mode; st.val = val || '';
+    st.mock = (mode === 'mock');
+    st.list = buildList();
+    st.pos = 0; st.answers = {}; st.judged = {}; st.review = false;
+    var chips = document.querySelectorAll('.qchip');
+    for (var i = 0; i < chips.length; i++) {
+      chips[i].classList.toggle('on', chips[i].getAttribute('data-mode') === mode && (mode === 'mock' || mode === 'wrong' || chips[i].getAttribute('data-val') === val));
+    }
+    if (st.mock && st.list.length) {
+      st.deadline = Date.now() + 20 * 60 * 1000;
+      st.timer = setInterval(tick, 500);
+    }
+    renderStats();
+    render();
+  }
+
+  function tick() {
+    var left = st.deadline - Date.now();
+    var el = document.getElementById('mockTimer');
+    if (!el) { clearInterval(st.timer); st.timer = null; return; }
+    if (left <= 0) { clearInterval(st.timer); st.timer = null; submitMock(); return; }
+    var m = Math.floor(left / 60000), s = Math.floor((left % 60000) / 1000);
+    el.textContent = '⏱ 剩余 ' + m + ':' + (s < 10 ? '0' : '') + s;
+    el.className = 'timer' + (left > 300000 ? ' calm' : '');
+  }
+
+  function render() {
+    gridWrap.hidden = true;
+    if (!st.list.length) {
+      body.innerHTML = '<div class="quiz-empty"><div class="big">📘</div>错题本是空的——先去做几道题，答错的会自动收进来。</div>';
+      return;
+    }
+    if (st.mock && !st.review) { renderMock(); return; }
+    renderOne();
+  }
+
+  function optHtml(q, idx, state) {
+    var cls = 'opt', mark = '';
+    if (state === 'sel') cls += ' sel';
+    if (state === 'right') { cls += ' right'; mark = '<span class="mark">✓ 正确答案</span>'; }
+    if (state === 'wrong') { cls += ' wrong'; mark = '<span class="mark">✗ 你的选择</span>'; }
+    return '<button type="button" class="' + cls + '" data-pick="' + idx + '" ' + (state ? 'disabled' : '') + '><span class="key">' + 'ABCD'[idx] + '</span><span>' + q.opts[idx] + '</span>' + mark + '</button>';
+  }
+
+  function renderOne() {
+    var q = st.list[st.pos];
+    var picked = st.answers[q.id];
+    var judged = !!st.judged[q.id];
+    var opts = '';
+    for (var i = 0; i < q.opts.length; i++) {
+      var state = '';
+      if (judged) { if (i === q.ans) state = 'right'; else if (i === picked) state = 'wrong'; }
+      else if (i === picked) state = 'sel';
+      opts += optHtml(q, i, judged ? state : (i === picked ? 'sel' : ''));
+    }
+    var ex = '';
+    if (judged) {
+      ex = '<div class="explain"><div class="ex-head">三段式深度题解</div>'
+        + '<div class="ex-seg ex-k"><b>① 考点定位</b><span>' + q.k + '</span></div>'
+        + '<div class="ex-seg ex-s"><b>② 解题过程</b><span>' + q.s + '</span></div>'
+        + '<div class="ex-seg ex-w"><b>③ 易错提醒</b><span>' + q.w + '</span></div></div>';
+    }
+    var nav = '<div class="qnav">'
+      + (st.pos > 0 ? '<button class="btn" type="button" data-act="prev">← 上一题</button>' : '')
+      + (st.pos < st.list.length - 1 ? '<button class="btn primary" type="button" data-act="next">下一题 →</button>' : (st.mode === 'wrong' ? '<button class="btn primary" type="button" data-act="clearwrong">清空错题本</button>' : ''))
+      + '</div>';
+    body.innerHTML = '<div class="qhead"><span class="qno">' + q.y + ' 年第 ' + q.n + ' 题</span>'
+      + '<span class="tag judge">' + q.topic + '</span><span class="tag ' + q.cat.toLowerCase() + '">' + q.cat + (q.cat === 'T0' ? ' 必保分' : q.cat === 'T1' ? ' 高频' : ' 轮换') + '</span></div>'
+      + '<div class="qstem">' + q.stem + '</div>'
+      + '<div class="opts">' + opts + '</div>' + ex + nav;
+    renderGrid();
+    renderScore();
+  }
+
+  function renderMock() {
+    var q = st.list[st.pos];
+    var picked = st.answers[q.id];
+    var opts = '';
+    for (var i = 0; i < q.opts.length; i++) opts += optHtml(q, i, i === picked ? 'sel' : '');
+    var answered = Object.keys(st.answers).length;
+    body.innerHTML = '<div class="qhead"><span class="qno">第 ' + (st.pos + 1) + ' / ' + st.list.length + ' 题</span>'
+      + '<span class="tag judge">' + q.topic + '</span>'
+      + '<span class="tag ' + q.cat.toLowerCase() + '">' + q.cat + '</span>'
+      + '<span class="timer" id="mockTimer">⏱ --:--</span></div>'
+      + '<div class="qstem">' + q.stem + '</div>'
+      + '<div class="opts">' + opts + '</div>'
+      + '<div class="qnav">'
+      + (st.pos > 0 ? '<button class="btn" type="button" data-act="prev">← 上一题</button>' : '')
+      + (st.pos < st.list.length - 1 ? '<button class="btn primary" type="button" data-act="next">下一题 →</button>' : '')
+      + '<button class="btn primary" type="button" data-act="submit">交卷（已答 ' + answered + '/' + st.list.length + '）</button>'
+      + '</div>';
+    renderGrid();
+    tick();
+  }
+
+  function renderGrid() {
+    gridWrap.hidden = false;
+    var html = '';
+    for (var i = 0; i < st.list.length; i++) {
+      var q = st.list[i], cls = 'qcell';
+      if (st.judged[q.id]) cls += (st.answers[q.id] === q.ans) ? ' done-right' : ' done-wrong';
+      else if (st.answers[q.id] != null) cls += ' done';
+      if (i === st.pos) cls += ' cur';
+      html += '<button type="button" class="' + cls + '" data-goto="' + i + '">' + (i + 1) + '</button>';
+    }
+    gridEl.innerHTML = html;
+  }
+
+  function renderScore() {
+    var r = 0, w = 0, done = 0;
+    for (var i = 0; i < st.list.length; i++) {
+      var q = st.list[i];
+      if (st.judged[q.id]) { done++; if (st.answers[q.id] === q.ans) r++; else w++; }
+      else if (st.answers[q.id] != null) done++;
+    }
+    var pct = (r + w) ? Math.round(r / (r + w) * 100) : 0;
+    scoreEl.innerHTML = '<span>进度 <b>' + done + '/' + st.list.length + '</b></span>'
+      + '<span>正确 <b class="ok">' + r + '</b></span><span>错误 <b class="bad">' + w + '</b></span>'
+      + '<span>正确率 <b>' + pct + '%</b></span>'
+      + '<span style="margin-left:auto"><button class="btn" type="button" data-act="restart">重做本轮</button></span>';
+  }
+
+  function judge(q, pick) {
+    st.judged[q.id] = true;
+    var right = pick === q.ans;
+    var wrongBook = lsGet(LS_WRONG, []);
+    var at = wrongBook.indexOf(q.id);
+    if (!right && at < 0) { wrongBook.push(q.id); lsSet(LS_WRONG, wrongBook); }
+    if (right && at >= 0) { wrongBook.splice(at, 1); lsSet(LS_WRONG, wrongBook); }
+    var stats = lsGet(LS_STATS, {});
+    var t = stats[q.topic] || { r: 0, w: 0 };
+    if (right) t.r++; else t.w++;
+    stats[q.topic] = t; lsSet(LS_STATS, stats);
+  }
+
+  function renderStats() {
+    var stats = lsGet(LS_STATS, {});
+    var keys = Object.keys(stats);
+    if (!keys.length) { statsBox.hidden = true; return; }
+    var rows = '';
+    keys.sort(function (a, b) { return (stats[a].r + stats[a].w) - (stats[b].r + stats[b].w); });
+    for (var i = 0; i < keys.length; i++) {
+      var k = keys[i], s = stats[k], tot = s.r + s.w, pct = Math.round(s.r / tot * 100);
+      rows += '<div class="ts-row"><span>' + k + '</span><div class="ts-bg"><div class="ts-bar" style="width:' + pct + '%"></div></div><span class="ts-num">' + s.r + '/' + tot + ' · ' + pct + '%</span></div>';
+    }
+    statsBox.hidden = false;
+    statsBox.innerHTML = '<div style="font-size:14px;font-weight:700;margin-bottom:6px">学习统计（本地累计，按考点正确率）</div>' + rows;
+  }
+
+  function submitMock() {
+    st.review = true;
+    var r = 0, w = 0;
+    for (var i = 0; i < st.list.length; i++) {
+      var q = st.list[i];
+      if (st.answers[q.id] != null) { judge(q, st.answers[q.id]); if (st.answers[q.id] === q.ans) r++; else w++; }
+    }
+    var score = r * 2;
+    body.innerHTML = '<div class="quiz-empty"><div class="big">📝</div>'
+      + '<div style="font-size:18px;font-weight:800">交卷成功：答对 <span style="color:var(--ok)">' + r + '</span> 题 / 答错 <span style="color:var(--bad)">' + w + '</span> 题 / 未答 ' + (st.list.length - r - w) + ' 题</div>'
+      + '<div class="muted" style="margin-top:6px">按初赛标准折算：<b>' + score + '</b> / 30 分（15 题 × 2 分）——点击下方题号逐题回顾三段式题解</div>'
+      + '<div style="margin-top:14px"><button class="btn primary" type="button" data-act="restart">再来一套</button></div></div>';
+    renderGrid();
+    scoreEl.innerHTML = '<span>模考成绩 <b class="ok">' + r + '</b> / ' + st.list.length + ' 题</span><span>折合 <b>' + score + '</b>/30 分</span><span style="margin-left:auto"><button class="btn" type="button" data-act="restart">再来一套</button></span>';
+    renderStats();
+  }
+
+  /* ---- 事件委托 ---- */
+  document.querySelectorAll('.qchip').forEach(function (c) {
+    c.addEventListener('click', function () { start(c.getAttribute('data-mode'), c.getAttribute('data-val')); });
+  });
+
+  body.addEventListener('click', function (e) {
+    var t = e.target;
+    var pick = t.closest && t.closest('[data-pick]');
+    if (pick) {
+      var q = st.list[st.pos], p = +pick.getAttribute('data-pick');
+      if (st.mock && !st.review) { st.answers[q.id] = p; renderMock(); }
+      else if (!st.judged[q.id]) { st.answers[q.id] = p; judge(q, p); renderOne(); renderStats(); }
+      return;
+    }
+    var act = t.closest && t.closest('[data-act]');
+    if (act) {
+      var a = act.getAttribute('data-act');
+      if (a === 'prev' && st.pos > 0) { st.pos--; st.review ? renderOne() : render(); }
+      else if (a === 'next' && st.pos < st.list.length - 1) { st.pos++; st.review ? renderOne() : render(); }
+      else if (a === 'restart') { start(st.mode, st.val); }
+      else if (a === 'submit') { submitMock(); }
+      else if (a === 'clearwrong') { lsSet(LS_WRONG, []); start('wrong'); }
+      return;
+    }
+    var goto = t.closest && t.closest('[data-goto]');
+    if (goto) { st.pos = +goto.getAttribute('data-goto'); st.review ? renderOne() : render(); }
+  });
+
+  start('year', '2025');
+})();
+</script>
+
+</body>
+</html>
